@@ -15,6 +15,7 @@ const DATA_FILE = process.env.DATA_FILE
 const BOOKING_DAYS = 14;
 const SLOT_MINUTES = 30;
 const LAST_SLOT = 20 * 60 + 30;
+const SKIPPED_SLOT = 20 * 60;
 const WEEKDAY_OPEN = 17 * 60;
 const WEEKEND_OPEN = 13 * 60;
 const PRICE = 50;
@@ -84,7 +85,7 @@ function getOpenTime(date) {
 function getSlotStarts(date) {
   const starts = [];
   for (let minutes = getOpenTime(date); minutes <= LAST_SLOT; minutes += SLOT_MINUTES) {
-    starts.push(minutes);
+    if (minutes !== SKIPPED_SLOT) starts.push(minutes);
   }
   return starts;
 }

@@ -623,7 +623,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`เสี่ยแพค หน้าเว็บลูกค้า: http://localhost:${PORT}/`);
-  console.log(`เสี่ยแพค หลังบ้านร้าน: http://localhost:${PORT}/admin`);
+  console.log(`เสี่ยแภคบาร์เบอร์ หน้าเว็บลูกค้า: http://localhost:${PORT}/`);
+  console.log(`เสี่ยแภคบาร์เบอร์ หลังบ้านร้าน: http://localhost:${PORT}/admin`);
   console.log(`ข้อมูลการจอง: ${DATA_FILE}`);
 });

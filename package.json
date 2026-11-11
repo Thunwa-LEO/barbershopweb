@@ -2,7 +2,7 @@
   "name": "sia-paek-barber",
   "version": "1.0.0",
   "private": true,
-  "description": "เว็บจองคิวและหลังบ้านร้านตัดผมเสี่ยแพค",
+  "description": "เว็บจองคิวและหลังบ้านร้านตัดผมเสี่ยแภคบาร์เบอร์",
   "scripts": {
     "start": "node server.js"
   }

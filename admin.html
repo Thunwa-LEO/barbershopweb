@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="หลังบ้านร้านเสี่ยแพค สำหรับดูและเรียกลำดับคิว">
+  <title>เรียกคิว — เสี่ยแพค</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23181512'/%3E%3Ctext x='32' y='44' font-family='sans-serif' font-size='34' font-weight='bold' text-anchor='middle' fill='%23f8f6f1'%3E%E0%B8%AA%3C/text%3E%3C/svg%3E">
+  <style>
+:root {
+  --bg: #f8f6f1;
+  --card: #ffffff;
+  --ink: #181512;
+  --muted: #746b62;
+  --line: #ded8ce;
+  --soft: #f3efe8;
+  --accent: #b84a1b;
+  --accent-soft: #f9e9df;
+  --on-dark: #f7f0e4;
+  --radius: 14px;
+  --font: "IBM Plex Sans Thai", "Noto Sans Thai", "Sarabun", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.admin-container {
+  width: min(880px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.admin-topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 64px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.brand-copy strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.brand-copy small {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-link {
+  color: var(--muted);
+  font-size: 11px;
+  transition: color 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
+.admin-main {
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.kicker {
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.page-heading h1 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+}
+
+.page-heading > div > p:last-child {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.realtime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 1px solid #cfe3d5;
+  border-radius: 999px;
+  background: #f1f8f3;
+  color: #2e7c51;
+  font-size: 9px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.realtime-badge i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2e8355;
+  box-shadow: 0 0 0 3px rgba(46, 131, 85, 0.1);
+}
+
+.refresh-button {
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11px;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.refresh-button:hover {
+  border-color: var(--ink);
+  background: var(--soft);
+}
+
+.refresh-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.clock-bar {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+}
+
+.clock-label {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.clock-time {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.clock-date {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.admin-error {
+  margin-bottom: 12px;
+  color: #a8321e;
+  font-size: 12px;
+}
+
+.admin-error:empty {
+  display: none;
+}
+
+/* Current queue */
+
+.current-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 14px;
+  padding: 24px 26px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.current-main {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "label label"
+    "number detail";
+  align-items: center;
+  column-gap: 17px;
+  row-gap: 2px;
+  min-width: 0;
+}
+
+.section-label {
+  grid-area: label;
+  color: rgba(247, 240, 228, 0.48);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.current-number {
+  grid-area: number;
+  color: #edaa86;
+  font-size: 58px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.current-detail {
+  grid-area: detail;
+  min-width: 0;
+}
+
+.current-detail h2 {
+  color: var(--on-dark);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.current-detail p {
+  margin-top: 2px;
+  color: rgba(247, 240, 228, 0.53);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.current-action {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  flex-shrink: 0;
+  width: 220px;
+}
+
+.current-action > p {
+  color: rgba(247, 240, 228, 0.55);
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.call-button {
+  min-height: 48px;
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.call-button:hover:not(:disabled) {
+  background: #a23d13;
+  border-color: #a23d13;
+}
+
+.call-button:disabled {
+  opacity: 0.44;
+  cursor: not-allowed;
+}
+
+.updated {
+  color: rgba(247, 240, 228, 0.35);
+  font-size: 9px;
+  text-align: center;
+}
+
+/* Stats */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--card);
+}
+
+.stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+/* Queue list */
+
+.queue-board {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.queue-board-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.queue-board-head h2 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.queue-board-head p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.queue-count {
+  flex-shrink: 0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.queue-row {
+  display: grid;
+  grid-template-columns: 34px 60px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.queue-row:last-child {
+  border-bottom: 0;
+}
+
+.queue-index {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.queue-row.is-current {
+  margin-inline: -8px;
+  padding-inline: 8px;
+  border-radius: 9px;
+  background: #fbf5ec;
+}
+
+.queue-row.is-current .queue-index {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.booking-time {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.booking-time strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.booking-time span {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.booking-info {
+  min-width: 0;
+}
+
+.booking-name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.class-badge {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.booking-meta {
+  display: block;
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.booking-phone {
+  display: inline-block;
+  margin-top: 1px;
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.booking-phone:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.booking-phone--empty {
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.status-pill {
+  flex-shrink: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.status-pill.is-called {
+  background: var(--accent);
+  color: #fff;
+}
+
+.status-pill.is-done {
+  background: transparent;
+  color: #aaa096;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 38px 20px 34px;
+  text-align: center;
+}
+
+.empty-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.empty-state strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.empty-state p {
+  max-width: 260px;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.admin-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 300;
+  text-align: center;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .current-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .current-number {
+    font-size: 50px;
+  }
+
+  .current-action {
+    width: 100%;
+  }
+
+  .current-action > p {
+    text-align: left;
+  }
+
+  .updated {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    width: calc(100% - 32px);
+  }
+
+  .admin-main {
+    padding-top: 28px;
+    padding-bottom: 40px;
+  }
+
+  .topbar-inner {
+    min-height: 62px;
+    gap: 10px;
+  }
+
+  .brand-copy small {
+    font-size: 8px;
+  }
+
+  .back-link {
+    font-size: 9px;
+  }
+
+  .page-heading {
+    align-items: flex-start;
+  }
+
+  .page-heading h1 {
+    font-size: 28px;
+  }
+
+  .page-heading > div > p:last-child {
+    font-size: 11px;
+  }
+
+  .refresh-button {
+    min-height: 36px;
+    padding: 6px 11px;
+    font-size: 10px;
+  }
+
+  .heading-actions {
+    gap: 5px;
+  }
+
+  .clock-bar {
+    gap: 6px;
+    padding: 8px 11px;
+  }
+
+  .clock-time {
+    font-size: 13px;
+  }
+
+  .clock-date {
+    font-size: 9px;
+  }
+
+  .realtime-badge {
+    padding: 3px 6px;
+    font-size: 8px;
+  }
+
+  .current-main {
+    column-gap: 13px;
+  }
+
+  .current-number {
+    font-size: 46px;
+  }
+
+  .current-detail h2 {
+    font-size: 17px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 10px 13px;
+  }
+
+  .stat strong {
+    margin-top: 0;
+    font-size: 19px;
+  }
+
+  .queue-board {
+    padding: 17px;
+  }
+
+  .queue-row {
+    grid-template-columns: 30px 52px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .queue-row.is-current {
+    margin-inline: -5px;
+    padding-inline: 5px;
+  }
+
+  .queue-index {
+    width: 27px;
+    height: 27px;
+    font-size: 9px;
+  }
+
+  .booking-time strong {
+    font-size: 13px;
+  }
+
+  .booking-name {
+    font-size: 12px;
+  }
+
+  .status-pill {
+    grid-column: 3;
+    justify-self: start;
+    margin-top: 1px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="admin-topbar">
+    <div class="admin-container topbar-inner">
+      <a class="brand" href="/" aria-label="เสี่ยแพค หน้าเว็บลูกค้า">
+        <span class="brand-mark" aria-hidden="true">ส</span>
+        <span class="brand-copy">
+          <strong>เสี่ยแพค</strong>
+          <small>หลังบ้านร้าน</small>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <a class="back-link" href="/">หน้าเว็บลูกค้า</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-container admin-main">
+    <div class="page-heading">
+      <div>
+        <p class="kicker">ADMIN · SIA PAEK BARBER</p>
+        <h1>เรียกคิว</h1>
+        <p>ดูว่าถึงคิวไหนแล้ว และกดเรียกคิวต่อไปได้เลย</p>
+      </div>
+      <div class="heading-actions">
+        <span class="realtime-badge"><i aria-hidden="true"></i> เรียลไทม์</span>
+        <button class="refresh-button" type="button" id="refreshButton">รีเฟรช</button>
+      </div>
+    </div>
+
+    <div class="clock-bar" aria-label="เวลาปัจจุบันของร้าน">
+      <span class="clock-label">เวลาร้าน</span>
+      <time class="clock-time" id="adminClock" datetime="">--:--:--</time>
+      <span class="clock-date" id="adminClockDate">—</span>
+    </div>
+
+    <p class="admin-error" id="adminError" role="alert"></p>
+
+    <section class="current-card" aria-labelledby="currentTitle">
+      <div class="current-main">
+        <span class="section-label">ถึงคิวที่</span>
+        <div class="current-number" id="currentNumber">—</div>
+        <div class="current-detail">
+          <h2 id="currentTitle">กำลังโหลดคิว...</h2>
+          <p id="currentMeta">กรุณารอสักครู่</p>
+        </div>
+      </div>
+      <div class="current-action">
+        <p id="nextPreview">—</p>
+        <button class="call-button" type="button" id="callNextButton" disabled>
+          เรียกคิวต่อไป
+        </button>
+        <span class="updated" id="lastUpdated">—</span>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <span>คิวทั้งหมดวันนี้</span>
+        <strong id="statTotal">0</strong>
+      </div>
+      <div class="stat">
+        <span>รออยู่</span>
+        <strong id="statWaiting">0</strong>
+      </div>
+      <div class="stat">
+        <span>เรียกแล้ว</span>
+        <strong id="statCalled">0</strong>
+      </div>
+    </div>
+
+    <section class="queue-board" aria-labelledby="queueTitle">
+      <div class="queue-board-head">
+        <div>
+          <h2 id="queueTitle">คิวทั้งหมดวันนี้</h2>
+          <p id="todayLabel">—</p>
+        </div>
+        <span class="queue-count" id="adminQueueCount">0 คิว</span>
+      </div>
+
+      <div class="queue-list" id="queueList" aria-live="polite"></div>
+
+      <div class="empty-state" id="emptyQueue" hidden>
+        <div class="empty-icon" aria-hidden="true">✓</div>
+        <strong>วันนี้ยังไม่มีคิว</strong>
+        <p>เมื่อมีลูกค้าจองคิว รายการจะแสดงที่นี่โดยอัตโนมัติ</p>
+      </div>
+    </section>
+
+    <p class="admin-note">กด “เรียกคิวต่อไป” เพื่อเลื่อนคิวถัดไป · อัปเดตแบบเรียลไทม์</p>
+  </main>
+
+  <script>
+(() => {
+  "use strict";
+
+  const clockFormatter = new Intl.DateTimeFormat("th-TH", {
+    timeZone: "Asia/Bangkok",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  });
+
+  const dateFormatter = new Intl.DateTimeFormat("th-TH", {
+    timeZone: "Asia/Bangkok",
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const els = {
+    refreshButton: document.getElementById("refreshButton"),
+    callNextButton: document.getElementById("callNextButton"),
+    adminError: document.getElementById("adminError"),
+    currentNumber: document.getElementById("currentNumber"),
+    currentTitle: document.getElementById("currentTitle"),
+    currentMeta: document.getElementById("currentMeta"),
+    nextPreview: document.getElementById("nextPreview"),
+    lastUpdated: document.getElementById("lastUpdated"),
+    statTotal: document.getElementById("statTotal"),
+    statWaiting: document.getElementById("statWaiting"),
+    statCalled: document.getElementById("statCalled"),
+    queueCount: document.getElementById("adminQueueCount"),
+    todayLabel: document.getElementById("todayLabel"),
+    queueList: document.getElementById("queueList"),
+    emptyQueue: document.getElementById("emptyQueue"),
+    adminClock: document.getElementById("adminClock"),
+    adminClockDate: document.getElementById("adminClockDate"),
+  };
+
+  let loading = false;
+  let calling = false;
+  let refreshTimer = null;
+  let eventSource = null;
+  let serverOffsetMs = 0;
+
+  function pad(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function parseDateKey(key) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(key || "")) return null;
+    const [year, month, day] = key.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    if (
+      date.getFullYear() !== year ||
+      date.getMonth() !== month - 1 ||
+      date.getDate() !== day
+    ) {
+      return null;
+    }
+    return date;
+  }
+
+  function formatTime(minutes) {
+    return `${pad(Math.floor(minutes / 60))}:${pad(minutes % 60)}`;
+  }
+
+  function formatPhone(value) {
+    const digits = String(value ?? "").replace(/\D/g, "");
+    if (digits.length === 10) {
+      return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+    if (digits.length === 9) {
+      return `${digits.slice(0, 2)}-${digits.slice(2, 5)}-${digits.slice(5)}`;
+    }
+    return digits || "—";
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (character) => {
+      const map = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      };
+      return map[character];
+    });
+  }
+
+  function syncServerTime(serverNow) {
+    const parsed = Number(serverNow);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      serverOffsetMs = parsed - Date.now();
+    }
+  }
+
+  function tickClock() {
+    const now = new Date(Date.now() + serverOffsetMs);
+    els.adminClock.textContent = `${clockFormatter.format(now)} น.`;
+    els.adminClock.dateTime = now.toISOString();
+    els.adminClockDate.textContent = dateFormatter.format(now);
+  }
+
+  async function api(path, options = {}) {
+    let response;
+    try {
+      response = await fetch(path, {
+        cache: "no-store",
+        credentials: "same-origin",
+        ...options,
+        headers: {
+          Accept: "application/json",
+          ...(options.headers || {}),
+        },
+      });
+    } catch {
+      throw new Error("เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่");
+    }
+
+    let data = {};
+    try {
+      data = await response.json();
+    } catch {
+      // Use the fallback below.
+    }
+
+    if (!response.ok) {
+      const error = new Error(data.message || "ทำรายการไม่สำเร็จ");
+      error.code = data.error;
+      error.status = response.status;
+      throw error;
+    }
+    return data;
+  }
+
+  async function loadQueue({ silent = false } = {}) {
+    if (loading || calling) return;
+    loading = true;
+    els.refreshButton.disabled = true;
+    if (!silent) els.refreshButton.textContent = "กำลังโหลด...";
+
+    try {
+      const data = await api("/api/queue");
+      syncServerTime(data.serverNow);
+      renderQueue(data);
+      els.adminError.textContent = "";
+    } catch (error) {
+      els.adminError.textContent =
+        error.message || "โหลดคิวไม่สำเร็จ กรุณาลองใหม่";
+    } finally {
+      loading = false;
+      els.refreshButton.disabled = false;
+      els.refreshButton.textContent = "รีเฟรช";
+    }
+  }
+
+  function renderQueue(data) {
+    const bookings = Array.isArray(data.bookings) ? data.bookings : [];
+    const current = data.current;
+    const next = data.next;
+    const waitingCount = Number(data.waitingCount) || 0;
+    const doneCount = Number(data.doneCount) || 0;
+    const total = Number(data.total) || 0;
+    const calledCount = doneCount + (current ? 1 : 0);
+
+    const date = parseDateKey(data.date);
+    els.todayLabel.textContent = date ? dateFormatter.format(date) : data.date;
+
+    els.currentNumber.textContent = current ? String(data.currentNo) : "—";
+
+    if (current) {
+      els.currentTitle.textContent = current.nickname;
+      els.currentMeta.textContent = `${formatTime(
+        current.startMinutes
+      )}–${formatTime(current.startMinutes + 30)} น. · ชั้น ${
+        current.className
+      } · รหัส ${current.code}`;
+    } else if (total === 0) {
+      els.currentTitle.textContent = "วันนี้ยังไม่มีคิว";
+      els.currentMeta.textContent = "เมื่อมีลูกค้าจองคิว รายการจะแสดงที่นี่";
+    } else if (waitingCount === 0) {
+      els.currentTitle.textContent = "เรียกคิวครบแล้ว";
+      els.currentMeta.textContent = "ไม่มีคิวที่รออยู่";
+    } else {
+      els.currentTitle.textContent = "ยังไม่เริ่มเรียกคิว";
+      els.currentMeta.textContent = "กดปุ่ม “เรียกคิวต่อไป” เพื่อเริ่มเรียกคิวแรก";
+    }
+
+    if (next) {
+      els.nextPreview.textContent = `คิวถัดไป #${next.queueNo} · ${
+        next.nickname
+      } · ${formatTime(next.startMinutes)} น.`;
+    } else if (current) {
+      els.nextPreview.textContent = "นี่คือคิวสุดท้ายแล้ว";
+    } else {
+      els.nextPreview.textContent = "—";
+    }
+
+    const canCall = Boolean(current) || waitingCount > 0;
+    els.callNextButton.disabled = !canCall || calling;
+    if (calling) {
+      els.callNextButton.textContent = "กำลังเรียก...";
+    } else if (waitingCount > 0) {
+      els.callNextButton.textContent = "เรียกคิวต่อไป";
+    } else if (current) {
+      els.callNextButton.textContent = "จบคิวนี้";
+    } else {
+      els.callNextButton.textContent = "ไม่มีคิว";
+    }
+
+    els.statTotal.textContent = String(total);
+    els.statWaiting.textContent = String(waitingCount);
+    els.statCalled.textContent = String(calledCount);
+    els.queueCount.textContent = `${total} คิว`;
+    els.lastUpdated.textContent = `อัปเดต ${new Date().toLocaleTimeString("th-TH", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
+
+    if (bookings.length === 0) {
+      els.queueList.innerHTML = "";
+      els.emptyQueue.hidden = false;
+      return;
+    }
+
+    els.emptyQueue.hidden = true;
+    els.queueList.innerHTML = bookings
+      .map((booking) => {
+        const isCurrent = booking.status === "called";
+        const isDone = booking.status === "done";
+        const statusText = isCurrent
+          ? "กำลังเรียก"
+          : isDone
+            ? "เสร็จแล้ว"
+            : "รอคิว";
+        const statusClass = isCurrent
+          ? "is-called"
+          : isDone
+            ? "is-done"
+            : "";
+        const phone = String(booking.phone ?? "").replace(/\D/g, "");
+        return `
+          <article class="queue-row${isCurrent ? " is-current" : ""}">
+            <span class="queue-index">#${booking.queueNo}</span>
+            <div class="booking-time">
+              <strong>${formatTime(booking.startMinutes)}</strong>
+              <span>${formatTime(booking.startMinutes + 30)}</span>
+            </div>
+            <div class="booking-info">
+              <div class="booking-name">
+                ${escapeHtml(booking.nickname)}
+                <span class="class-badge">${escapeHtml(booking.className)}</span>
+              </div>
+              <span class="booking-meta">รหัส ${escapeHtml(booking.code)} · ฿${
+                Number(booking.price) || 50
+              }</span>
+              ${
+                phone
+                  ? `<a class="booking-phone" href="tel:${escapeHtml(
+                      phone
+                    )}">โทร ${escapeHtml(formatPhone(phone))}</a>`
+                  : '<span class="booking-phone booking-phone--empty">ไม่มีเบอร์โทร</span>'
+              }
+            </div>
+            <span class="status-pill ${statusClass}">${statusText}</span>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  async function callNext() {
+    if (calling || els.callNextButton.disabled) return;
+    calling = true;
+    els.adminError.textContent = "";
+    els.callNextButton.disabled = true;
+    els.callNextButton.textContent = "กำลังเรียก...";
+
+    try {
+      const data = await api("/api/queue/next", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{}",
+      });
+      syncServerTime(data.serverNow);
+      calling = false;
+      renderQueue(data);
+    } catch (error) {
+      calling = false;
+      els.adminError.textContent =
+        error.message || "เรียกคิวไม่สำเร็จ กรุณาลองใหม่";
+      await loadQueue({ silent: true });
+    }
+  }
+
+  function connectRealtime() {
+    if (eventSource) eventSource.close();
+    if (!("EventSource" in window)) return;
+    eventSource = new EventSource("/api/events");
+    eventSource.addEventListener("update", (event) => {
+      let data;
+      try {
+        data = JSON.parse(event.data);
+      } catch {
+        return;
+      }
+      syncServerTime(data.serverNow || data.at);
+      if (!calling && !loading) loadQueue({ silent: true });
+    });
+  }
+
+  els.refreshButton.addEventListener("click", () => loadQueue());
+  els.callNextButton.addEventListener("click", callNext);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      loadQueue({ silent: true });
+    }
+  });
+
+  async function init() {
+    tickClock();
+    window.setInterval(tickClock, 1000);
+    await loadQueue();
+    connectRealtime();
+    refreshTimer = window.setInterval(() => {
+      if (document.visibilityState === "visible" && !calling) {
+        loadQueue({ silent: true });
+      }
+    }, 30000);
+  }
+
+  init();
+})();
+
+  </script>
+</body>
+</html>

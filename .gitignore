@@ -1,0 +1,7 @@
+node_modules/
+data/bookings.json
+data/payment-qr.bin
+data/payment-qr.json
+*.log
+*.zip
+.DS_Store

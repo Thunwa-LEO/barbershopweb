@@ -18,11 +18,15 @@ Apps Script โดยตรง:
 
 ## ฝังใน Google Sites
 
-1. เปิด Google Sites แล้วสร้างไซต์ใหม่
-2. เพิ่มหน้า → Insert → Embed → Embed code
-3. วาง iframe ด้านล่าง (หน้าลูกค้า)
-4. ทำหน้าใหม่สำหรับหลังบ้านโดยใช้ URL `?page=admin`
-5. Publish
+ตัวเว็บถูกฝังและ publish แล้วที่:
+- หน้าลูกค้า: https://sites.google.com/view/sia-phaek-barber
+- หลังบ้าน: https://sites.google.com/view/sia-phaek-barber/admin
+
+หากต้องแก้ embed ในอนาคต:
+1. เปิดหน้าแก้ไข Google Sites
+2. เลือกบล็อก Embed → Edit
+3. วาง iframe ด้านล่าง (หน้าลูกค้าใช้ `?page=home`, หลังบ้านใช้ `?page=admin`)
+4. Publish
 
 ```html
 <iframe

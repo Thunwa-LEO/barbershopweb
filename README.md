@@ -18,7 +18,7 @@
 หน้าลูกค้าไม่มีลิงก์ไปหลังบ้าน และหน้า admin ถูกซ่อนจาก navigation
 ดูวิธีฝัง/รายละเอียดที่ [`google-apps-script/README.md`](google-apps-script/README.md)
 
-> Google Sites ไม่มี API สำหรับสร้างหน้าหรือวาง embed อัตโนมัติ จึงต้องสร้างหน้า Sites และวาง iframe ตามคู่มือ
+> หน้า Google Sites ถูกสร้างและ publish แล้ว; หากต้องการแก้ไข/ย้าย embed ให้ทำผ่านหน้าแก้ไข Sites
 
 ## เวอร์ชัน Node.js (สำรองในเครื่อง)
 

@@ -2,14 +2,21 @@
 
 ## เวอร์ชัน Google (ใช้งานหลัก)
 
-เวอร์ชันนี้รันบน **Google Apps Script + Google Sheets** ไม่ต้องเปิดเครื่องนี้ทิ้งไว้:
+เว็บรันบน **Google Sites + Google Apps Script + Google Sheets** แล้ว ไม่ต้องเปิดเครื่องนี้ทิ้งไว้:
 
-- หน้าลูกค้า: https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=home
-- หลังบ้าน: https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=admin
+- หน้าลูกค้า (Google Sites): https://sites.google.com/view/sia-phaek-barber
+- หลังบ้าน (Google Sites): https://sites.google.com/view/sia-phaek-barber/admin
+- Apps Script ตรง: https://script.google.com/macros/s/AKfycbw86TgIcT7590NB1q4M2WB4WYcBEG6Dtp2aQiCKAusSt7PMFLy7BotMg2CggrNpjdLG/exec?page=home
+- หลังบ้าน Apps Script: https://script.google.com/macros/s/AKfycbw86TgIcT7590NB1q4M2WB4WYcBEG6Dtp2aQiCKAusSt7PMFLy7BotMg2CggrNpjdLG/exec?page=admin
 - Google Sheets: https://docs.google.com/spreadsheets/d/1wRftatxh8HMBnOZkXAWq9UkoJt-oFofaj7O-e5QzU5A/edit
 
 ข้อมูลคิวทั้งหมดถูกย้ายไป Google Sheets แล้ว และทั้งสองหน้าซิงก์กันทุก 5 วินาที
-ดูวิธีฝังใน Google Sites ที่ [`google-apps-script/README.md`](google-apps-script/README.md)
+หน้า Google Sites ถูกสร้างและ publish แล้ว:
+- หน้าลูกค้า: https://sites.google.com/view/sia-phaek-barber
+- หลังบ้าน: https://sites.google.com/view/sia-phaek-barber/admin
+
+หน้าลูกค้าไม่มีลิงก์ไปหลังบ้าน และหน้า admin ถูกซ่อนจาก navigation
+ดูวิธีฝัง/รายละเอียดที่ [`google-apps-script/README.md`](google-apps-script/README.md)
 
 > Google Sites ไม่มี API สำหรับสร้างหน้าหรือวาง embed อัตโนมัติ จึงต้องสร้างหน้า Sites และวาง iframe ตามคู่มือ
 

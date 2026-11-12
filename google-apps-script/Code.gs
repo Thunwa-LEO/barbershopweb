@@ -40,7 +40,8 @@ function doGet(e) {
       : "เสี่ยแภคบาร์เบอร์ — จองคิวตัดผม 50 บาท";
   return HtmlService.createHtmlOutputFromFile(page)
     .setTitle(title)
-    .addMetaTag("viewport", "width=device-width, initial-scale=1");
+    .addMetaTag("viewport", "width=device-width, initial-scale=1")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function handleApi(request) {

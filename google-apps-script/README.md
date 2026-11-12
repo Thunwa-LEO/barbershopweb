@@ -7,8 +7,13 @@
 
 ## URL
 
-- หน้าลูกค้า: https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=home
-- หลังบ้าน: https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=admin
+Google Sites (ใช้งานหลัก):
+- หน้าลูกค้า: https://sites.google.com/view/sia-phaek-barber
+- หลังบ้าน: https://sites.google.com/view/sia-phaek-barber/admin
+
+Apps Script โดยตรง:
+- หน้าลูกค้า: https://script.google.com/macros/s/AKfycbw86TgIcT7590NB1q4M2WB4WYcBEG6Dtp2aQiCKAusSt7PMFLy7BotMg2CggrNpjdLG/exec?page=home
+- หลังบ้าน: https://script.google.com/macros/s/AKfycbw86TgIcT7590NB1q4M2WB4WYcBEG6Dtp2aQiCKAusSt7PMFLy7BotMg2CggrNpjdLG/exec?page=admin
 - Google Sheets: https://docs.google.com/spreadsheets/d/1wRftatxh8HMBnOZkXAWq9UkoJt-oFofaj7O-e5QzU5A/edit
 
 ## ฝังใน Google Sites
@@ -21,7 +26,7 @@
 
 ```html
 <iframe
-  src="https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=home"
+  src="https://script.google.com/macros/s/AKfycbw86TgIcT7590NB1q4M2WB4WYcBEG6Dtp2aQiCKAusSt7PMFLy7BotMg2CggrNpjdLG/exec?page=home"
   style="width:100%;height:900px;border:0"
   loading="lazy"></iframe>
 ```

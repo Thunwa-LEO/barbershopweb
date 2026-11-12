@@ -20,6 +20,7 @@ const WEEKDAY_OPEN = 17 * 60;
 const WEEKEND_OPEN = 13 * 60;
 const PRICE = 50;
 const MAX_BODY_BYTES = 16 * 1024;
+const ALLOWED_API_ORIGINS = new Set(["https://thunwa-leo.github.io"]);
 
 const eventClients = new Set();
 
@@ -139,13 +140,27 @@ function writeSecurityHeaders(res, noindex = false) {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("Referrer-Policy", "no-referrer");
-  res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
+  res.setHeader(
+    "Cross-Origin-Resource-Policy",
+    res.__apiCors ? "cross-origin" : "same-origin"
+  );
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   res.setHeader(
     "Content-Security-Policy",
     "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
   );
   if (noindex) res.setHeader("X-Robots-Tag", "noindex, nofollow");
+}
+
+function applyApiCors(req, res) {
+  const origin = req.headers.origin;
+  if (!origin || !ALLOWED_API_ORIGINS.has(origin)) return;
+  res.__apiCors = true;
+  res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Vary", "Origin");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
 }
 
 function sendJson(res, status, data, extraHeaders = {}) {
@@ -589,6 +604,17 @@ const server = http.createServer(async (req, res) => {
   }
 
   const pathname = url.pathname;
+  if (pathname.startsWith("/api/")) {
+    applyApiCors(req, res);
+    if (req.method === "OPTIONS") {
+      res.writeHead(204, {
+        "Cache-Control": "no-store",
+        "Access-Control-Max-Age": "86400",
+      });
+      res.end();
+      return;
+    }
+  }
   if (pathname === "/api/events" && req.method === "GET") {
     openEventStream(req, res);
     return;

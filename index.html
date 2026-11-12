@@ -1735,6 +1735,8 @@ input:focus {
 
   const PRICE = 50;
   const BOOKING_DAYS = 14;
+  const REMOTE_API_BASE = "https://thanwa-leo-pc-limux.tail96774d.ts.net:8443";
+  const API_BASE = location.hostname.endsWith("github.io") ? REMOTE_API_BASE : "";
   const SLOT_MINUTES = 30;
   const SKIPPED_SLOT = 20 * 60;
   const WEEKDAY_OPEN = 17 * 60;
@@ -1956,7 +1958,7 @@ input:focus {
   async function api(path, options = {}) {
     let response;
     try {
-      response = await fetch(path, {
+      response = await fetch(`${API_BASE}${path}`, {
         cache: "no-store",
         credentials: "same-origin",
         ...options,
@@ -2395,7 +2397,7 @@ input:focus {
   }
 
   function connectRealtime() {
-    if (!("EventSource" in window)) return;
+    if (API_BASE || !("EventSource" in window)) return;
     const source = new EventSource("/api/events");
     source.addEventListener("update", (event) => {
       let data;
@@ -2897,7 +2899,7 @@ input:focus {
         refreshAvailability();
         refreshMyBookingStatus();
       }
-    }, 30000);
+    }, API_BASE ? 5000 : 30000);
   }
 
   init();

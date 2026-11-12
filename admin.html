@@ -785,7 +785,7 @@ button {
 <body>
   <header class="admin-topbar">
     <div class="admin-container topbar-inner">
-      <a class="brand" href="/" aria-label="เสี่ยแภคบาร์เบอร์ หน้าเว็บลูกค้า">
+      <a class="brand" href="./" aria-label="เสี่ยแภคบาร์เบอร์ หน้าเว็บลูกค้า">
         <span class="brand-mark" aria-hidden="true">ส</span>
         <span class="brand-copy">
           <strong>เสี่ยแภคบาร์เบอร์</strong>
@@ -793,7 +793,7 @@ button {
         </span>
       </a>
       <div class="topbar-actions">
-        <a class="back-link" href="/">หน้าเว็บลูกค้า</a>
+        <a class="back-link" href="./">หน้าเว็บลูกค้า</a>
       </div>
     </div>
   </header>
@@ -876,6 +876,9 @@ button {
   <script>
 (() => {
   "use strict";
+
+  const REMOTE_API_BASE = "https://thanwa-leo-pc-limux.tail96774d.ts.net:8443";
+  const API_BASE = location.hostname.endsWith("github.io") ? REMOTE_API_BASE : "";
 
   const clockFormatter = new Intl.DateTimeFormat("th-TH", {
     timeZone: "Asia/Bangkok",
@@ -982,7 +985,7 @@ button {
   async function api(path, options = {}) {
     let response;
     try {
-      response = await fetch(path, {
+      response = await fetch(`${API_BASE}${path}`, {
         cache: "no-store",
         credentials: "same-origin",
         ...options,
@@ -1173,7 +1176,7 @@ button {
 
   function connectRealtime() {
     if (eventSource) eventSource.close();
-    if (!("EventSource" in window)) return;
+    if (API_BASE || !("EventSource" in window)) return;
     eventSource = new EventSource("/api/events");
     eventSource.addEventListener("update", (event) => {
       let data;
@@ -1204,7 +1207,11 @@ button {
       if (document.visibilityState === "visible" && !calling) {
         loadQueue({ silent: true });
       }
-    }, 30000);
+    }, API_BASE ? 5000 : 30000);
+    if (API_BASE) {
+      const badge = document.querySelector(".realtime-badge");
+      if (badge) badge.innerHTML = "<i></i> ซิงก์ 5 วิ";
+    }
   }
 
   init();

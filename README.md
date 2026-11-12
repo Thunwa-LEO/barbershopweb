@@ -2,6 +2,8 @@
 
 ## เวอร์ชัน Google (ใช้งานหลัก)
 
+ธีมสีชมพู (rose pink) ใช้ทั้งหน้าลูกค้าและหลังบ้าน
+
 เว็บรันบน **Google Sites + Google Apps Script + Google Sheets** แล้ว ไม่ต้องเปิดเครื่องนี้ทิ้งไว้:
 
 - หน้าลูกค้า (Google Sites): https://sites.google.com/view/sia-phaek-barber

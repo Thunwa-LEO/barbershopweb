@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#20120d">
+  <meta name="theme-color" content="#fff7fa">
   <meta name="description" content="เสี่ยแภคบาร์เบอร์ ร้านตัดผมราคาเดียว 50 บาท เลือกวันและเวลาที่สะดวกแล้วจองคิวได้เลย">
   <title>เสี่ยแภคบาร์เบอร์ — จองคิวตัดผม 50 บาท</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2320120d'/%3E%3Ctext x='32' y='44' font-family='sans-serif' font-size='34' font-weight='bold' text-anchor='middle' fill='%23f4ecdf'%3E%E0%B8%AA%3C/text%3E%3C/svg%3E">
   <style>
 :root {
-  --bg: #f8f6f1;
+  --bg: #fff7fa;
   --card: #ffffff;
-  --ink: #181512;
-  --muted: #746b62;
-  --line: #ded8ce;
-  --soft: #f3efe8;
-  --accent: #b84a1b;
-  --accent-soft: #f9e9df;
+  --ink: #2b1720;
+  --muted: #866b77;
+  --line: #ecd8e2;
+  --soft: #fbedf4;
+  --accent: #b13f68;
+  --accent-soft: #fbe3ed;
   --success: #24724a;
   --radius: 14px;
   --font: "IBM Plex Sans Thai", "Noto Sans Thai", "Sarabun", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -545,7 +545,7 @@ h1 {
   padding: 9px 12px;
   border: 1px solid var(--line);
   border-radius: 9px;
-  background: #fcfbf8;
+  background: #fffafd;
 }
 
 .now-dot {
@@ -563,7 +563,7 @@ h1 {
 }
 
 .queue-now.is-closed .now-dot {
-  background: #aaa096;
+  background: #b39ba6;
   box-shadow: 0 0 0 4px rgba(170, 160, 150, 0.12);
 }
 
@@ -631,13 +631,13 @@ h1 {
 }
 
 .legend-dot--booked {
-  border: 1px solid #efcdb9;
+  border: 1px solid #f2c6d8;
   background: var(--accent-soft);
 }
 
 .legend-dot--off {
-  border: 1px solid #ddd5ca;
-  background: #f0ece6;
+  border: 1px solid #ecd8e2;
+  background: #fbf2f6;
 }
 
 .timetable-scroll {
@@ -663,8 +663,8 @@ h1 {
 
 .timetable th,
 .timetable td {
-  border-right: 1px solid #ece6de;
-  border-bottom: 1px solid #ece6de;
+  border-right: 1px solid #f0e2e8;
+  border-bottom: 1px solid #f0e2e8;
   text-align: center;
   vertical-align: middle;
 }
@@ -685,7 +685,7 @@ h1 {
   z-index: 2;
   height: 52px;
   padding: 6px 3px;
-  background: #f8f5f0;
+  background: #fdf1f6;
   box-shadow: 0 1px 0 #e9e2d9;
 }
 
@@ -705,11 +705,11 @@ h1 {
 
 .timetable thead .time-column {
   z-index: 4;
-  background: #f8f5f0;
+  background: #fdf1f6;
 }
 
 .timetable tbody tr:nth-child(even) .time-column {
-  background: #fcfbf9;
+  background: #fffafd;
 }
 
 .timetable tbody th,
@@ -794,12 +794,12 @@ button.cell.is-free:hover {
 
 .cell.is-past,
 .cell.is-closed {
-  background: #f7f4ef;
-  color: #b8afa4;
+  background: #fbf4f8;
+  color: #b39ba6;
 }
 
 .cell.is-closed {
-  color: #cfc7bd;
+  color: #d8c6d0;
 }
 
 .scroll-hint {
@@ -901,11 +901,11 @@ input {
 }
 
 input::placeholder {
-  color: #aaa096;
+  color: #b39ba6;
 }
 
 input:hover {
-  border-color: #b9afa2;
+  border-color: #c3aab5;
 }
 
 input:focus {
@@ -919,11 +919,11 @@ input:focus {
 }
 
 .field.has-error input {
-  border-color: #b33a24;
+  border-color: #9e3259;
 }
 
 .field.has-error input:focus {
-  box-shadow: 0 0 0 3px #f7ded9;
+  box-shadow: 0 0 0 3px #f6d3e1;
 }
 
 .help {
@@ -937,7 +937,7 @@ input:focus {
 .error {
   min-height: 0;
   margin-top: 4px;
-  color: #a8321e;
+  color: #9e3259;
   font-size: 11px;
   line-height: 1.5;
 }
@@ -1006,7 +1006,7 @@ input:focus {
 }
 
 .slot.is-booked {
-  border-color: #f0d9ca;
+  border-color: #f2c6d8;
   background: var(--accent-soft);
 }
 
@@ -1019,13 +1019,13 @@ input:focus {
 }
 
 .slot.is-past {
-  border-color: #e9e4dc;
+  border-color: #eddbe4;
   background: var(--soft);
-  color: #aaa096;
+  color: #b39ba6;
 }
 
 .slot.is-past .slot-status {
-  color: #aaa096;
+  color: #b39ba6;
 }
 
 .slot[aria-pressed="true"] .slot-status {
@@ -1101,8 +1101,8 @@ input:focus {
 }
 
 .button-primary:hover {
-  background: #342e29;
-  border-color: #342e29;
+  background: #2b1720;
+  border-color: #2b1720;
 }
 
 .button-primary:disabled {
@@ -1131,7 +1131,7 @@ input:focus {
 
 .storage-note {
   margin-top: 14px;
-  color: #9b9187;
+  color: #9a7f8b;
   font-size: 11px;
   font-weight: 300;
   text-align: center;

@@ -554,6 +554,29 @@ button {
   font-weight: 300;
 }
 
+.queue-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.delete-booking {
+  padding: 4px 7px;
+  border: 1px solid #e4c9c1;
+  border-radius: 999px;
+  background: transparent;
+  color: #a3412d;
+  font-size: 9px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.delete-booking:hover {
+  border-color: #a3412d;
+  background: #fbece8;
+}
+
 .status-pill {
   flex-shrink: 0;
   padding: 4px 8px;
@@ -573,6 +596,53 @@ button {
 .status-pill.is-done {
   background: transparent;
   color: #aaa096;
+}
+
+.upcoming-card {
+  margin-top: 16px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.upcoming-card .queue-board-head {
+  margin-bottom: 8px;
+}
+
+.upcoming-row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.upcoming-row:last-child {
+  border-bottom: 0;
+}
+
+.upcoming-date strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.upcoming-date span {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.upcoming-info {
+  min-width: 0;
+}
+
+.upcoming-empty {
+  padding: 18px 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
 }
 
 .empty-state {
@@ -754,6 +824,34 @@ button {
     padding: 12px 0;
   }
 
+  .queue-index {
+    grid-column: 1;
+  }
+
+  .booking-time {
+    grid-column: 2;
+  }
+
+  .booking-info {
+    grid-column: 3;
+  }
+
+  .queue-actions {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    justify-self: end;
+    margin-top: 2px;
+  }
+
+  .upcoming-card {
+    padding: 17px;
+  }
+
+  .upcoming-row {
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
   .queue-row.is-current {
     margin-inline: -5px;
     padding-inline: 5px;
@@ -870,7 +968,19 @@ button {
       </div>
     </section>
 
-    <p class="admin-note">กด “เรียกคิวต่อไป” เพื่อเลื่อนคิวถัดไป · อัปเดตแบบเรียลไทม์</p>
+    <section class="upcoming-card" aria-labelledby="upcomingTitle">
+      <div class="queue-board-head">
+        <div>
+          <h2 id="upcomingTitle">คิวล่วงหน้า</h2>
+          <p>รายการที่จองไว้ใน 14 วันข้างหน้า</p>
+        </div>
+        <span class="queue-count" id="upcomingCount">0 คิว</span>
+      </div>
+      <div class="upcoming-list" id="upcomingList" aria-live="polite"></div>
+      <p class="upcoming-empty" id="upcomingEmpty">ยังไม่มีคิวล่วงหน้า</p>
+    </section>
+
+    <p class="admin-note">กด “เรียกคิวต่อไป” เพื่อเลื่อนคิวถัดไป · ลบคิวได้จากปุ่ม “ลบ” · อัปเดตแบบเรียลไทม์</p>
   </main>
 
   <script>
@@ -913,12 +1023,16 @@ button {
     todayLabel: document.getElementById("todayLabel"),
     queueList: document.getElementById("queueList"),
     emptyQueue: document.getElementById("emptyQueue"),
+    upcomingList: document.getElementById("upcomingList"),
+    upcomingEmpty: document.getElementById("upcomingEmpty"),
+    upcomingCount: document.getElementById("upcomingCount"),
     adminClock: document.getElementById("adminClock"),
     adminClockDate: document.getElementById("adminClockDate"),
   };
 
   let loading = false;
   let calling = false;
+  let deleting = false;
   let refreshTimer = null;
   let eventSource = null;
   let serverOffsetMs = 0;
@@ -943,6 +1057,14 @@ button {
 
   function formatTime(minutes) {
     return `${pad(Math.floor(minutes / 60))}:${pad(minutes % 60)}`;
+  }
+
+  function formatDateShort(date) {
+    return new Intl.DateTimeFormat("th-TH", {
+      timeZone: "Asia/Bangkok",
+      day: "numeric",
+      month: "short",
+    }).format(date);
   }
 
   function formatPhone(value) {
@@ -1135,6 +1257,8 @@ button {
       minute: "2-digit",
     })}`;
 
+    renderUpcoming(data.upcoming);
+
     if (bookings.length === 0) {
       els.queueList.innerHTML = "";
       els.emptyQueue.hidden = false;
@@ -1180,7 +1304,100 @@ button {
                   : '<span class="booking-phone booking-phone--empty">ไม่มีเบอร์โทร</span>'
               }
             </div>
-            <span class="status-pill ${statusClass}">${statusText}</span>
+            <div class="queue-actions">
+              <span class="status-pill ${statusClass}">${statusText}</span>
+              <button
+                type="button"
+                class="delete-booking"
+                data-id="${escapeHtml(booking.id)}"
+                data-name="${escapeHtml(booking.nickname)}"
+                data-when="วันนี้ ${formatTime(booking.startMinutes)}"
+                aria-label="ลบคิวของ ${escapeHtml(booking.nickname)} เวลา ${formatTime(booking.startMinutes)} น."
+                title="ลบคิวนี้"
+              >ลบ</button>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  async function deleteBooking(id, name, when) {
+    if (deleting || !id) return;
+    const confirmed = window.confirm(
+      `ลบคิวของ ${name} (${when}) หรือไม่?\nการลบไม่สามารถย้อนกลับได้`
+    );
+    if (!confirmed) return;
+
+    deleting = true;
+    els.adminError.textContent = "";
+    try {
+      const data = await api("/api/queue/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id }),
+      });
+      syncServerTime(data.serverNow);
+      renderQueue(data);
+      els.lastUpdated.textContent = "ลบคิวแล้ว";
+    } catch (error) {
+      els.adminError.textContent =
+        error.message || "ลบคิวไม่สำเร็จ กรุณาลองใหม่";
+    } finally {
+      deleting = false;
+    }
+  }
+
+  function renderUpcoming(upcoming) {
+    const items = Array.isArray(upcoming) ? upcoming : [];
+    els.upcomingCount.textContent = `${items.length} คิว`;
+
+    if (items.length === 0) {
+      els.upcomingList.innerHTML = "";
+      els.upcomingEmpty.hidden = false;
+      return;
+    }
+
+    els.upcomingEmpty.hidden = true;
+    els.upcomingList.innerHTML = items
+      .map((booking) => {
+        const date = parseDateKey(booking.date);
+        const dateText = date ? formatDateShort(date) : booking.date;
+        const timeText = formatTime(booking.startMinutes);
+        const phone = String(booking.phone ?? "").replace(/\D/g, "");
+        return `
+          <article class="upcoming-row">
+            <div class="upcoming-date">
+              <strong>${escapeHtml(dateText)}</strong>
+              <span>${formatTime(booking.startMinutes)}–${formatTime(
+                booking.startMinutes + 30
+              )} น.</span>
+            </div>
+            <div class="upcoming-info">
+              <div class="booking-name">
+                ${escapeHtml(booking.nickname)}
+                <span class="class-badge">${escapeHtml(booking.className)}</span>
+              </div>
+              <span class="booking-meta">รหัส ${escapeHtml(booking.code)}</span>
+              ${
+                phone
+                  ? `<a class="booking-phone" href="tel:${escapeHtml(
+                      phone
+                    )}">โทร ${escapeHtml(formatPhone(phone))}</a>`
+                  : '<span class="booking-phone booking-phone--empty">ไม่มีเบอร์โทร</span>'
+              }
+            </div>
+            <button
+              type="button"
+              class="delete-booking"
+              data-id="${escapeHtml(booking.id)}"
+              data-name="${escapeHtml(booking.nickname)}"
+              data-when="${escapeHtml(dateText)} ${timeText}"
+              aria-label="ลบคิวของ ${escapeHtml(booking.nickname)} วันที่ ${escapeHtml(
+                dateText
+              )} เวลา ${timeText} น."
+              title="ลบคิวนี้"
+            >ลบ</button>
           </article>
         `;
       })
@@ -1229,6 +1446,17 @@ button {
 
   els.refreshButton.addEventListener("click", () => loadQueue());
   els.callNextButton.addEventListener("click", callNext);
+  const handleDeleteClick = (event) => {
+    const button = event.target.closest(".delete-booking");
+    if (!button) return;
+    deleteBooking(
+      button.dataset.id,
+      button.dataset.name,
+      button.dataset.when
+    );
+  };
+  els.queueList.addEventListener("click", handleDeleteClick);
+  els.upcomingList.addEventListener("click", handleDeleteClick);
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
       loadQueue({ silent: true });

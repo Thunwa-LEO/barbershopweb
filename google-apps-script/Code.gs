@@ -65,6 +65,8 @@ function handleApi(request) {
       data = getTodayQueue_();
     } else if (pathname === "/api/queue/next" && method === "POST") {
       data = callNext_();
+    } else if (pathname === "/api/queue/delete" && method === "POST") {
+      data = deleteBooking_(body);
     } else if (pathname === "/api/booking-status" && method === "GET") {
       data = getBookingStatus_(params.code);
     } else {
@@ -451,6 +453,33 @@ function getTodayQueue_() {
     return booking.status === "waiting";
   });
   const publicQueue = getPublicQueue_(today, bookings);
+  const lastBookable = addDaysKey_(today, BOOKING_DAYS - 1);
+  const upcoming = bookings
+    .filter(function (booking) {
+      return (
+        booking.date > today &&
+        booking.date <= lastBookable &&
+        booking.status !== "done"
+      );
+    })
+    .sort(function (a, b) {
+      return a.date === b.date
+        ? a.startMinutes - b.startMinutes
+        : a.date.localeCompare(b.date);
+    })
+    .map(function (booking) {
+      return {
+        id: booking.id,
+        code: booking.code,
+        date: booking.date,
+        startMinutes: booking.startMinutes,
+        nickname: booking.nickname,
+        className: booking.className,
+        phone: booking.phone,
+        price: booking.price,
+        status: booking.status,
+      };
+    });
   return {
     date: today,
     serverDate: today,
@@ -463,6 +492,7 @@ function getTodayQueue_() {
     current: current || null,
     next: next || null,
     bookings: day,
+    upcoming: upcoming,
   };
 }
 
@@ -485,6 +515,33 @@ function callNext_() {
     });
     if (current) updateBookingStatus_(bookings, current.id, "done");
     if (next) updateBookingStatus_(bookings, next.id, "called");
+    return getTodayQueue_();
+  });
+}
+
+function deleteBooking_(body) {
+  const id = String((body && body.id) || "").trim();
+  if (!id) {
+    throw new ApiError(400, "INVALID_ID", "ไม่พบรหัสคิวที่จะลบ");
+  }
+
+  return withLock_(function () {
+    const sheet = getSheet_();
+    const lastRow = sheet.getLastRow();
+    if (lastRow < 2) {
+      throw new ApiError(404, "BOOKING_NOT_FOUND", "ไม่พบคิวนี้");
+    }
+    const values = sheet
+      .getRange(2, 1, lastRow - 1, HEADERS.length)
+      .getValues();
+    const index = values.findIndex(function (row) {
+      return String(row[0] || "") === id;
+    });
+    if (index < 0) {
+      throw new ApiError(404, "BOOKING_NOT_FOUND", "ไม่พบคิวนี้");
+    }
+    sheet.deleteRow(index + 2);
+    SpreadsheetApp.flush();
     return getTodayQueue_();
   });
 }

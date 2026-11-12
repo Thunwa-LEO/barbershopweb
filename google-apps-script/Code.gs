@@ -407,7 +407,12 @@ function getAvailability_(from, to) {
         return booking.date >= fromKey && booking.date <= toKey;
       })
       .map(function (booking) {
-        return { date: booking.date, startMinutes: booking.startMinutes };
+        return {
+          date: booking.date,
+          startMinutes: booking.startMinutes,
+          nickname: booking.nickname,
+          className: booking.className,
+        };
       }),
     queue: getPublicQueue_(today, bookings),
     serverNow: Date.now(),

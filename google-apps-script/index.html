@@ -783,9 +783,13 @@ button.cell.is-free:hover {
 }
 
 .cell.is-booked {
+  max-width: 100%;
+  overflow: hidden;
   background: var(--accent-soft);
   color: var(--accent);
   font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cell.is-past,
@@ -1007,7 +1011,11 @@ input:focus {
 }
 
 .slot.is-booked .slot-status {
+  max-width: 100%;
+  overflow: hidden;
   color: var(--accent);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .slot.is-past {
@@ -1924,6 +1932,27 @@ input:focus {
     return starts;
   }
 
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (character) => {
+      const map = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      };
+      return map[character];
+    });
+  }
+
+  function getBookingForSlot(date, startMinutes) {
+    const key = dateKey(date);
+    return state.occupied.find(
+      (booking) =>
+        booking.date === key && booking.startMinutes === startMinutes
+    );
+  }
+
   function getSlotState(date, startMinutes) {
     const key = dateKey(date);
     if (
@@ -2131,15 +2160,21 @@ input:focus {
         const slotState = getSlotState(date, startMinutes);
         const disabled = slotState !== "free";
         const selected = state.selectedTime === startMinutes;
+        const occupied = getBookingForSlot(date, startMinutes);
+        const bookedName =
+          occupied && occupied.nickname ? occupied.nickname : "มีคิว";
         const status =
           slotState === "booked"
-            ? "มีคิว"
+            ? bookedName
             : slotState === "past"
               ? "เลยเวลา"
               : selected
                 ? "เลือกแล้ว"
                 : "ว่าง";
-        const label = `${formatTime(startMinutes)} น. ${status}`;
+        const label =
+          slotState === "booked"
+            ? `${formatTime(startMinutes)} น. จองโดย ${bookedName}`
+            : `${formatTime(startMinutes)} น. ${status}`;
         return `
           <button
             type="button"
@@ -2285,7 +2320,16 @@ input:focus {
 
             if (slotState === "booked") {
               bookedCount += 1;
-              return '<td><span class="cell is-booked">มีคิว</span></td>';
+              const occupied = getBookingForSlot(date, startMinutes);
+              const bookedName =
+                occupied && occupied.nickname ? occupied.nickname : "มีคิว";
+              return `<td><span class="cell is-booked" title="จองโดย ${escapeHtml(
+                bookedName
+              )}" aria-label="${formatDateFull(date)} ${formatTime(
+                startMinutes
+              )} น. จองโดย ${escapeHtml(bookedName)}">${escapeHtml(
+                bookedName
+              )}</span></td>`;
             }
 
             return '<td><span class="cell is-past">เลย</span></td>';

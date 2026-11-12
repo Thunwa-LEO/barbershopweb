@@ -5,3 +5,4 @@ data/payment-qr.json
 *.log
 *.zip
 .DS_Store
+google-apps-script/.clasp.json

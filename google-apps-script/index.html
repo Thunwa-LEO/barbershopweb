@@ -1,0 +1,2947 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#20120d">
+  <meta name="description" content="เสี่ยแภคบาร์เบอร์ ร้านตัดผมราคาเดียว 50 บาท เลือกวันและเวลาที่สะดวกแล้วจองคิวได้เลย">
+  <title>เสี่ยแภคบาร์เบอร์ — จองคิวตัดผม 50 บาท</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2320120d'/%3E%3Ctext x='32' y='44' font-family='sans-serif' font-size='34' font-weight='bold' text-anchor='middle' fill='%23f4ecdf'%3E%E0%B8%AA%3C/text%3E%3C/svg%3E">
+  <style>
+:root {
+  --bg: #f8f6f1;
+  --card: #ffffff;
+  --ink: #181512;
+  --muted: #746b62;
+  --line: #ded8ce;
+  --soft: #f3efe8;
+  --accent: #b84a1b;
+  --accent-soft: #f9e9df;
+  --success: #24724a;
+  --radius: 14px;
+  --font: "IBM Plex Sans Thai", "Noto Sans Thai", "Sarabun", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.container {
+  width: min(760px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 64px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.topbar-note {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.page {
+  padding-top: 46px;
+  padding-bottom: 56px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+}
+
+.lead {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.hours {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.hours > div {
+  padding: 12px 16px;
+  border-right: 1px solid var(--line);
+}
+
+.hours > div:last-child {
+  border-right: 0;
+}
+
+.hours span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.hours strong {
+  display: block;
+  margin-top: 1px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+
+
+.live-queue {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.live-queue-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.live-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2e8355;
+  box-shadow: 0 0 0 3px rgba(46, 131, 85, 0.1);
+}
+
+.live-number {
+  color: var(--accent);
+  font-size: 31px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.live-copy {
+  flex: 1;
+  min-width: 0;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.live-copy strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.live-copy p {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.live-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.live-badge {
+  padding: 3px 7px;
+  border: 1px solid #cfe3d5;
+  border-radius: 999px;
+  background: #f1f8f3;
+  color: #2e7c51;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.shop-clock {
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+
+
+.my-queue-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.my-queue-card.is-called {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.my-queue-side {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.my-queue-label {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.my-queue-number {
+  color: var(--accent);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.my-queue-copy {
+  flex: 1;
+  min-width: 0;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.my-queue-copy strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.my-queue-copy p {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.notify-button {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 7px 11px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.notify-button:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}
+
+.notify-button:disabled {
+  border-color: var(--line);
+  color: var(--muted);
+  cursor: default;
+  opacity: 0.75;
+}
+
+.notify-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--soft);
+  text-align: left;
+}
+
+.notify-prompt > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.notify-prompt strong {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.notify-prompt span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.queue-alert {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 120;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  width: min(380px, calc(100% - 40px));
+  padding: 15px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 20px 50px -16px rgba(0, 0, 0, 0.5);
+}
+
+.queue-alert-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.queue-alert-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.queue-alert-copy strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.queue-alert-copy p {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.queue-alert-close {
+  flex-shrink: 0;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.queue-alert-close:hover {
+  color: #fff;
+}
+
+.schedule-card {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.schedule-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.schedule-header .eyebrow {
+  margin-bottom: 1px;
+}
+
+.schedule-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.week-button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.week-button:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.week-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#scheduleWeekRange {
+  min-width: 92px;
+  text-align: center;
+}
+
+.queue-now {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fcfbf8;
+}
+
+.now-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e8355;
+  box-shadow: 0 0 0 4px rgba(46, 131, 85, 0.1);
+}
+
+.queue-now.is-busy .now-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(184, 74, 27, 0.1);
+}
+
+.queue-now.is-closed .now-dot {
+  background: #aaa096;
+  box-shadow: 0 0 0 4px rgba(170, 160, 150, 0.12);
+}
+
+.queue-now div > span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.queue-now strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.schedule-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.queue-count {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.schedule-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.schedule-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+}
+
+.legend-dot--free {
+  border: 1px solid #b9dcc4;
+  background: #dcefe1;
+}
+
+.legend-dot--booked {
+  border: 1px solid #efcdb9;
+  background: var(--accent-soft);
+}
+
+.legend-dot--off {
+  border: 1px solid #ddd5ca;
+  background: #f0ece6;
+}
+
+.timetable-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.timetable-scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.timetable {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.timetable th,
+.timetable td {
+  border-right: 1px solid #ece6de;
+  border-bottom: 1px solid #ece6de;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.timetable tr:last-child th,
+.timetable tr:last-child td {
+  border-bottom: 0;
+}
+
+.timetable th:last-child,
+.timetable td:last-child {
+  border-right: 0;
+}
+
+.timetable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 52px;
+  padding: 6px 3px;
+  background: #f8f5f0;
+  box-shadow: 0 1px 0 #e9e2d9;
+}
+
+.timetable .time-column {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  width: 54px;
+  padding: 4px 6px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.timetable thead .time-column {
+  z-index: 4;
+  background: #f8f5f0;
+}
+
+.timetable tbody tr:nth-child(even) .time-column {
+  background: #fcfbf9;
+}
+
+.timetable tbody th,
+.timetable tbody td {
+  height: 36px;
+  padding: 1px 2px;
+}
+
+.day-name {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.day-date {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.today-label {
+  display: inline-block;
+  margin-top: 1px;
+  color: var(--accent);
+  font-size: 8px;
+  line-height: 1.2;
+}
+
+.timetable thead th.is-today {
+  background: var(--accent-soft);
+  box-shadow: inset 0 2px 0 var(--accent);
+}
+
+.timetable thead th.is-today .day-name {
+  color: var(--accent);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 32px;
+  padding: 2px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+button.cell {
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cell.is-free {
+  background: #edf7f0;
+  color: #2c7b50;
+  font-weight: 500;
+}
+
+button.cell.is-free:hover {
+  background: #dcefe2;
+  box-shadow: inset 0 0 0 1px #8bbd9e;
+}
+
+.cell.is-booked {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.cell.is-past,
+.cell.is-closed {
+  background: #f7f4ef;
+  color: #b8afa4;
+}
+
+.cell.is-closed {
+  color: #cfc7bd;
+}
+
+.scroll-hint {
+  display: none;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.queue-note {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.step {
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 24px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.step + .step {
+  padding-top: 24px;
+}
+
+.step:last-of-type {
+  padding-bottom: 22px;
+  border-bottom: 0;
+}
+
+legend {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.step-number {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.field {
+  min-width: 0;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+input {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input::placeholder {
+  color: #aaa096;
+}
+
+input:hover {
+  border-color: #b9afa2;
+}
+
+input:focus {
+  border-color: var(--accent);
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field--date input {
+  max-width: 260px;
+}
+
+.field.has-error input {
+  border-color: #b33a24;
+}
+
+.field.has-error input:focus {
+  box-shadow: 0 0 0 3px #f7ded9;
+}
+
+.help {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.error {
+  min-height: 0;
+  margin-top: 4px;
+  color: #a8321e;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.error:empty {
+  display: none;
+}
+
+.error--form {
+  margin: 0 0 10px;
+}
+
+/* Time slots */
+
+.slot-date {
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  min-height: 54px;
+  padding: 6px 4px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  line-height: 1.25;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.slot-time {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.slot-status {
+  color: #2e7c51;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.slot:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.slot[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.slot:disabled {
+  cursor: not-allowed;
+}
+
+.slot.is-booked {
+  border-color: #f0d9ca;
+  background: var(--accent-soft);
+}
+
+.slot.is-booked .slot-status {
+  color: var(--accent);
+}
+
+.slot.is-past {
+  border-color: #e9e4dc;
+  background: var(--soft);
+  color: #aaa096;
+}
+
+.slot.is-past .slot-status {
+  color: #aaa096;
+}
+
+.slot[aria-pressed="true"] .slot-status {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.slot-empty {
+  grid-column: 1 / -1;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* Summary + submit */
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 22px 0 14px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: var(--soft);
+}
+
+.summary-text {
+  min-width: 0;
+}
+
+.summary-text span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.summary-text strong {
+  display: block;
+  margin-top: 1px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.summary-price {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.button-primary,
+.button-secondary {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.button-primary {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: #342e29;
+  border-color: #342e29;
+}
+
+.button-primary:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.button-secondary {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.button-secondary:hover {
+  border-color: var(--ink);
+}
+
+.note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.storage-note {
+  margin-top: 14px;
+  color: #9b9187;
+  font-size: 11px;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* Success */
+
+.success-panel {
+  padding: 6px 0 4px;
+  text-align: center;
+}
+
+.success-panel:focus {
+  outline: none;
+}
+
+.success-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.success-panel .eyebrow {
+  margin-bottom: 2px;
+}
+
+.success-panel h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.success-code {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.success-code strong {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.receipt {
+  margin: 22px 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.receipt > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.receipt > div:last-child {
+  border-bottom: 0;
+}
+
+.receipt dt {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.receipt dd {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.success-panel .note {
+  margin-bottom: 16px;
+}
+
+
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.footer-inner a:hover {
+  color: var(--ink);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-links a:first-child {
+  color: var(--accent);
+}
+
+.table-message {
+  padding: 28px 12px !important;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .page {
+    padding-top: 30px;
+    padding-bottom: 36px;
+  }
+
+  .topbar-note {
+    display: none;
+  }
+
+  .intro {
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .lead {
+    font-size: 13px;
+  }
+
+  .hours {
+    grid-template-columns: 1fr;
+  }
+
+  .hours > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 13px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hours > div:last-child {
+    border-bottom: 0;
+  }
+
+  .hours span,
+  .hours strong {
+    display: inline;
+    margin: 0;
+  }
+
+  .card {
+    padding: 20px 17px;
+  }
+
+  .step {
+    padding-bottom: 20px;
+  }
+
+  .step + .step {
+    padding-top: 20px;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .field--date input {
+    max-width: none;
+  }
+
+  .slot-grid {
+    gap: 6px;
+  }
+
+  .slot {
+    min-height: 51px;
+  }
+
+  .slot-time {
+    font-size: 13px;
+  }.live-queue {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .live-number {
+    font-size: 27px;
+  }
+
+  .live-copy {
+    padding-left: 10px;
+  }
+
+  .live-copy strong {
+    font-size: 11px;
+  }
+
+  .live-copy p {
+    font-size: 9px;
+  }
+
+  .live-right {
+    gap: 0;
+  }
+
+  .live-badge {
+    display: none;
+  }
+
+  .shop-clock {
+    font-size: 9px;
+  }
+
+      .my-queue-card {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .my-queue-number {
+    font-size: 27px;
+  }
+
+  .my-queue-copy {
+    flex: 1;
+    min-width: 140px;
+    padding-left: 10px;
+  }
+
+  .notify-button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .notify-prompt {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .queue-alert {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    width: auto;
+  }
+
+.schedule-card {
+    padding: 17px;
+  }
+
+  .schedule-header h2 {
+    font-size: 18px;
+  }
+
+  .week-nav,
+  #scheduleWeekRange {
+    font-size: 9px;
+  }
+
+  .queue-count {
+    font-size: 9px;
+  }
+
+  .queue-now {
+    align-items: flex-start;
+  }
+
+  .queue-now strong {
+    font-size: 11px;
+  }
+
+  .schedule-meta {
+    align-items: flex-start;
+  }
+
+  .schedule-legend {
+    gap: 6px;
+    font-size: 8px;
+  }
+
+  .week-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #scheduleWeekRange {
+    flex: 1;
+  }
+
+  .timetable-scroll {
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .timetable {
+    min-width: 620px;
+  }
+
+  .timetable .time-column {
+    width: 48px;
+    padding-left: 5px;
+    font-size: 9px;
+  }
+
+  .timetable thead th {
+    height: 49px;
+  }
+
+  .timetable tbody th,
+  .timetable tbody td {
+    height: 35px;
+  }
+
+  .day-name {
+    font-size: 10px;
+  }
+
+  .day-date {
+    font-size: 8px;
+  }
+
+  .cell {
+    min-height: 31px;
+    font-size: 9px;
+  }
+
+  .scroll-hint {
+    display: block;
+  }
+
+  .summary {
+    align-items: flex-start;
+    padding: 11px 13px;
+  }
+
+  .summary-price {
+    font-size: 19px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 3px;
+    padding: 15px 0;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#" aria-label="เสี่ยแภคบาร์เบอร์">
+        <span class="brand-mark" aria-hidden="true">ส</span>
+        <span class="brand-name">เสี่ยแภคบาร์เบอร์</span>
+      </a>
+      <p class="topbar-note">ราคาเดียว 50 บาท</p>
+    </div>
+  </header>
+
+  <main class="container page">
+    <section class="intro" aria-labelledby="pageTitle">
+      <p class="eyebrow">จองคิวง่าย ๆ · ราคาเดียว 50 บาท</p>
+      <h1 id="pageTitle">จองคิวตัดผม</h1>
+      <p class="lead">เลือกวันและเวลา กรอกชื่อเล่น ชั้น และเบอร์โทร แล้วกดยืนยันได้เลย</p>
+    </section>
+
+    <section class="hours" aria-label="เวลาเปิดทำการ">
+      <div>
+        <span>จันทร์–ศุกร์</span>
+        <strong>17:00–21:00 น.</strong>
+      </div>
+      <div>
+        <span>เสาร์–อาทิตย์</span>
+        <strong>13:00–21:00 น.</strong>
+      </div>
+      <div>
+        <span>คิวสุดท้าย</span>
+        <strong>20:30–21:00 น.</strong>
+      </div>
+    </section>
+
+
+    <section class="live-queue" aria-live="polite" aria-atomic="true">
+      <div class="live-queue-left">
+        <span class="live-label"><i class="live-dot" aria-hidden="true"></i> คิวปัจจุบัน</span>
+        <strong class="live-number" id="liveQueueNumber">—</strong>
+      </div>
+      <div class="live-copy">
+        <strong id="liveQueueTitle">กำลังโหลดคิว...</strong>
+        <p id="liveQueueMeta">กรุณารอสักครู่</p>
+      </div>
+      <div class="live-right">
+        <span class="live-badge">LIVE</span>
+        <time class="shop-clock" id="shopClock" datetime="">--:--:--</time>
+      </div>
+    </section>
+
+    <section class="my-queue-card" id="myQueueCard" hidden aria-live="polite">
+      <div class="my-queue-side">
+        <span class="my-queue-label">คิวของฉัน</span>
+        <strong class="my-queue-number" id="myQueueNumber">—</strong>
+      </div>
+      <div class="my-queue-copy">
+        <strong id="myQueueTitle">—</strong>
+        <p id="myQueueDetail">—</p>
+      </div>
+      <button class="notify-button" type="button" id="enableNotifyButton">เปิดแจ้งเตือน</button>
+    </section>
+
+    <section class="schedule-card" aria-labelledby="scheduleTitle">
+      <div class="schedule-header">
+        <div>
+          <p class="eyebrow">ตารางตัดผม</p>
+          <h2 id="scheduleTitle">ตารางคิว 7 วัน</h2>
+        </div>
+        <div class="week-nav" aria-label="เลือกสัปดาห์">
+          <button type="button" class="week-button" id="prevScheduleWeek" aria-label="สัปดาห์ก่อนหน้า">←</button>
+          <span id="scheduleWeekRange">—</span>
+          <button type="button" class="week-button" id="nextScheduleWeek" aria-label="สัปดาห์ถัดไป">→</button>
+        </div>
+      </div>
+
+      <div class="queue-now" id="queueNowBox">
+        <span class="now-dot" aria-hidden="true"></span>
+        <div>
+          <span>สถานะตอนนี้</span>
+          <strong id="queueNowText">กำลังตรวจสอบ...</strong>
+        </div>
+      </div>
+
+      <div class="schedule-meta">
+        <p class="queue-count" id="queueCount">กำลังโหลด...</p>
+        <div class="schedule-legend" aria-hidden="true">
+          <span><i class="legend-dot legend-dot--free"></i>ว่าง</span>
+          <span><i class="legend-dot legend-dot--booked"></i>มีคิว</span>
+          <span><i class="legend-dot legend-dot--off"></i>ปิด / เลยเวลา</span>
+        </div>
+      </div>
+
+      <p class="scroll-hint">ปัดตารางซ้าย–ขวา / ขึ้น–ลงเพื่อดูทั้งหมด</p>
+      <div class="timetable-scroll" tabindex="0" aria-label="ตารางคิว 7 วัน เลื่อนซ้ายขวาและขึ้นลงเพื่อดูทุกวัน">
+        <table class="timetable">
+          <thead id="scheduleHead"></thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+      </div>
+      <p class="queue-note">1 ช่วงเวลา รับได้ 1 คน · แตะช่อง “ว่าง” เพื่อเลือกวันและเวลา</p>
+    </section>
+
+    <section class="card" id="booking" aria-label="แบบฟอร์มจองคิว">
+      <form id="bookingForm" novalidate>
+        <fieldset class="step">
+          <legend><span class="step-number">1</span> เลือกวัน</legend>
+          <div class="field field--date">
+            <label for="date">วันที่</label>
+            <input type="date" id="date" name="date" aria-describedby="dateHelp" required>
+          </div>
+          <p class="help" id="dateHelp">จองล่วงหน้าได้ 14 วัน</p>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><span class="step-number">2</span> เลือกเวลา</legend>
+          <p class="slot-date" id="slotDateLabel">เลือกวันที่ก่อน</p>
+          <div class="slot-grid" id="slots" role="group" aria-label="รอบเวลาว่าง"></div>
+          <p class="error" id="timeError" role="alert"></p>
+          <p class="help">ทุกคิว 30 นาที · 1 ช่วงเวลา รับ 1 คน · งดรอบ 20:00 น. · 20:30 น. คือคิวสุดท้าย</p>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><span class="step-number">3</span> ข้อมูลผู้จอง</legend>
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">ชื่อเล่น</label>
+              <input type="text" id="name" name="nickname" autocomplete="nickname" maxlength="30" placeholder="เช่น ต้น" aria-describedby="nameError" required>
+              <p class="error" id="nameError" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="className">ชั้น</label>
+              <input type="text" id="className" name="className" maxlength="30" placeholder="เช่น ม.2/1" aria-describedby="classError" required>
+              <p class="error" id="classError" role="alert"></p>
+            </div>
+            <div class="field field--full">
+              <label for="phone">เบอร์โทรศัพท์</label>
+              <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" maxlength="12" placeholder="เช่น 0812345678" aria-describedby="phoneError" required>
+              <p class="error" id="phoneError" role="alert"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="summary">
+          <div class="summary-text">
+            <span>สรุปการจอง</span>
+            <strong id="summaryText" aria-live="polite">ยังไม่ได้เลือกวันและเวลา</strong>
+          </div>
+          <strong class="summary-price" id="totalPrice">฿50</strong>
+        </div>
+
+        <p class="error error--form" id="formError" role="alert"></p>
+        <button class="button-primary" type="submit" id="submitBtn">ยืนยันการจอง</button>
+        <p class="note">ไม่มีค่ามัดจำ · กรุณามาก่อนเวลานัด 10 นาที</p>
+      </form>
+
+      <div class="success-panel" id="successPanel" tabindex="-1" hidden>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <p class="eyebrow">จองคิวเรียบร้อย</p>
+        <h2>เจอกันที่ร้านนะครับ</h2>
+        <p class="success-code">รหัสการจอง <strong id="successCode">—</strong></p>
+        <dl class="receipt">
+          <div>
+            <dt>วันที่</dt>
+            <dd id="successDate">—</dd>
+          </div>
+          <div>
+            <dt>เวลา</dt>
+            <dd id="successTime">—</dd>
+          </div>
+          <div>
+            <dt>ชื่อเล่น</dt>
+            <dd id="successName">—</dd>
+          </div>
+          <div>
+            <dt>ชั้น</dt>
+            <dd id="successClass">—</dd>
+          </div>
+          <div>
+            <dt>ยอดชำระที่ร้าน</dt>
+            <dd id="successPrice">—</dd>
+          </div>
+        </dl>
+        <div class="notify-prompt">
+          <div>
+            <strong>แจ้งเตือนเมื่อถึงคิว</strong>
+            <span>เปิดไว้เพื่อให้เว็บแจ้งเตือนคุณเมื่อถูกเรียกคิว</span>
+          </div>
+          <button class="notify-button" type="button" id="enableNotifySuccess">เปิดแจ้งเตือน</button>
+        </div>
+        <p class="note">กรุณามาถึงร้านก่อนเวลานัด 10 นาที</p>
+        <button class="button-secondary" type="button" id="bookAgain">จองคิวอีกครั้ง</button>
+      </div>
+    </section>
+
+    <p class="storage-note">ข้อมูลคิวถูกบันทึกที่ร้าน · สอบถามเพิ่มเติมได้ที่ร้าน</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>เสี่ยแภคบาร์เบอร์ · สุขุมวิท 24</p>
+      <div class="footer-links">
+        <a href="tel:021234567">02 123 4567</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="queue-alert" id="queueAlert" role="alert" hidden>
+    <div class="queue-alert-icon" aria-hidden="true">!</div>
+    <div class="queue-alert-copy">
+      <strong>ถึงคิวของคุณแล้ว!</strong>
+      <p id="queueAlertText">—</p>
+    </div>
+    <button class="queue-alert-close" type="button" id="closeQueueAlert" aria-label="ปิดการแจ้งเตือน">×</button>
+  </div>
+
+  <script>
+(() => {
+  "use strict";
+
+  const PRICE = 50;
+  const BOOKING_DAYS = 14;
+  const REMOTE_API_BASE = "https://thanwa-leo-pc-limux.tail96774d.ts.net:8443";
+  const API_BASE = location.hostname.endsWith("github.io") ? REMOTE_API_BASE : "";
+  const isAppsScript = !!(window.google && window.google.script && window.google.script.run);
+  const SLOT_MINUTES = 30;
+  const SKIPPED_SLOT = 20 * 60;
+  const WEEKDAY_OPEN = 17 * 60;
+  const WEEKEND_OPEN = 13 * 60;
+  const LAST_SLOT = 20 * 60 + 30;
+  const BOOKING_STORAGE_KEY = "siapaek_tracked_booking_v1";
+  const NOTIFIED_STORAGE_KEY = "siapaek_notified_booking_v1";
+
+  const WEEKDAYS = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."];
+  const WEEKDAYS_FULL = [
+    "วันอาทิตย์",
+    "วันจันทร์",
+    "วันอังคาร",
+    "วันพุธ",
+    "วันพฤหัสบดี",
+    "วันศุกร์",
+    "วันเสาร์",
+  ];
+  const clockFormatter = new Intl.DateTimeFormat("th-TH", {
+    timeZone: "Asia/Bangkok",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  });
+
+  const MONTHS = [
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
+  ];
+
+  const els = {
+    form: document.getElementById("bookingForm"),
+    date: document.getElementById("date"),
+    slots: document.getElementById("slots"),
+    slotDateLabel: document.getElementById("slotDateLabel"),
+    timeError: document.getElementById("timeError"),
+    name: document.getElementById("name"),
+    classNameInput: document.getElementById("className"),
+    phone: document.getElementById("phone"),
+    nameError: document.getElementById("nameError"),
+    classError: document.getElementById("classError"),
+    phoneError: document.getElementById("phoneError"),
+    formError: document.getElementById("formError"),
+    summaryText: document.getElementById("summaryText"),
+    totalPrice: document.getElementById("totalPrice"),
+    submitBtn: document.getElementById("submitBtn"),
+    queueCount: document.getElementById("queueCount"),
+    queueNowText: document.getElementById("queueNowText"),
+    queueNowBox: document.getElementById("queueNowBox"),
+    scheduleHead: document.getElementById("scheduleHead"),
+    scheduleBody: document.getElementById("scheduleBody"),
+    scheduleWeekRange: document.getElementById("scheduleWeekRange"),
+    prevScheduleWeek: document.getElementById("prevScheduleWeek"),
+    nextScheduleWeek: document.getElementById("nextScheduleWeek"),
+    successPanel: document.getElementById("successPanel"),
+    successCode: document.getElementById("successCode"),
+    successDate: document.getElementById("successDate"),
+    successTime: document.getElementById("successTime"),
+    successName: document.getElementById("successName"),
+    successClass: document.getElementById("successClass"),
+    successPrice: document.getElementById("successPrice"),
+    bookAgain: document.getElementById("bookAgain"),
+    booking: document.getElementById("booking"),
+    liveQueueNumber: document.getElementById("liveQueueNumber"),
+    liveQueueTitle: document.getElementById("liveQueueTitle"),
+    liveQueueMeta: document.getElementById("liveQueueMeta"),
+    shopClock: document.getElementById("shopClock"),
+    myQueueCard: document.getElementById("myQueueCard"),
+    myQueueNumber: document.getElementById("myQueueNumber"),
+    myQueueTitle: document.getElementById("myQueueTitle"),
+    myQueueDetail: document.getElementById("myQueueDetail"),
+    enableNotifyButton: document.getElementById("enableNotifyButton"),
+    enableNotifySuccess: document.getElementById("enableNotifySuccess"),
+    queueAlert: document.getElementById("queueAlert"),
+    queueAlertText: document.getElementById("queueAlertText"),
+    closeQueueAlert: document.getElementById("closeQueueAlert"),
+  };
+
+  const state = {
+    status: "loading",
+    occupied: [],
+    selectedTime: null,
+    today: startOfDay(new Date()),
+    scheduleOffset: 0,
+    publicQueue: null,
+    myBooking: null,
+    checkingBooking: false,
+    serverOffsetMs: 0,
+    refreshing: false,
+    submitting: false,
+    eventSource: null,
+    audioContext: null,
+  };
+
+  function pad(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function startOfDay(date) {
+    const result = new Date(date);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  function addDays(date, amount) {
+    const result = new Date(date);
+    result.setDate(result.getDate() + amount);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  function dateKey(date) {
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  }
+
+  function parseDateKey(key) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(key || "")) return null;
+    const [year, month, day] = key.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    if (
+      date.getFullYear() !== year ||
+      date.getMonth() !== month - 1 ||
+      date.getDate() !== day
+    ) {
+      return null;
+    }
+    return startOfDay(date);
+  }
+
+  function formatTime(minutes) {
+    return `${pad(Math.floor(minutes / 60))}:${pad(minutes % 60)}`;
+  }
+
+  function formatDateShort(date) {
+    return `${WEEKDAYS[date.getDay()]} ${date.getDate()} ${MONTHS[date.getMonth()]}`;
+  }
+
+  function formatDateFull(date) {
+    return `${WEEKDAYS_FULL[date.getDay()]}ที่ ${date.getDate()} ${
+      MONTHS[date.getMonth()]
+    } ${date.getFullYear() + 543}`;
+  }
+
+  function formatDateRange(start, end) {
+    if (start.getFullYear() !== end.getFullYear()) {
+      return `${start.getDate()} ${MONTHS[start.getMonth()]} ${
+        start.getFullYear() + 543
+      } – ${end.getDate()} ${MONTHS[end.getMonth()]} ${end.getFullYear() + 543}`;
+    }
+    if (start.getMonth() === end.getMonth()) {
+      return `${start.getDate()}–${end.getDate()} ${MONTHS[start.getMonth()]} ${
+        start.getFullYear() + 543
+      }`;
+    }
+    return `${start.getDate()} ${MONTHS[start.getMonth()]} – ${end.getDate()} ${
+      MONTHS[end.getMonth()]
+    } ${start.getFullYear() + 543}`;
+  }
+
+  function isWeekend(date) {
+    return date.getDay() === 0 || date.getDay() === 6;
+  }
+
+  function getOpenTime(date) {
+    return isWeekend(date) ? WEEKEND_OPEN : WEEKDAY_OPEN;
+  }
+
+  function getSlotStarts(date) {
+    const starts = [];
+    for (let minutes = getOpenTime(date); minutes <= LAST_SLOT; minutes += SLOT_MINUTES) {
+      if (minutes !== SKIPPED_SLOT) starts.push(minutes);
+    }
+    return starts;
+  }
+
+  function getSlotState(date, startMinutes) {
+    const key = dateKey(date);
+    if (
+      state.occupied.some(
+        (booking) => booking.date === key && booking.startMinutes === startMinutes
+      )
+    ) {
+      return "booked";
+    }
+
+    const now = new Date();
+    if (key === dateKey(now)) {
+      if (startMinutes <= now.getHours() * 60 + now.getMinutes()) return "past";
+    }
+
+    return "free";
+  }
+
+  function getAvailableCount(date) {
+    return getSlotStarts(date).filter(
+      (startMinutes) => getSlotState(date, startMinutes) === "free"
+    ).length;
+  }
+
+  function findFirstAvailableDate() {
+    for (let index = 0; index < BOOKING_DAYS; index += 1) {
+      const date = addDays(state.today, index);
+      if (getAvailableCount(date) > 0) return dateKey(date);
+    }
+    return dateKey(state.today);
+  }
+
+  async function api(path, options = {}) {
+    if (isAppsScript) {
+      return new Promise((resolve, reject) => {
+        let body = {};
+        if (options.body) {
+          try {
+            body = JSON.parse(options.body);
+          } catch {
+            body = {};
+          }
+        }
+        google.script.run
+          .withSuccessHandler((result) => {
+            if (!result || result.ok === false) {
+              const error = new Error(
+                (result && result.message) || "ทำรายการไม่สำเร็จ"
+              );
+              error.code = result && result.code;
+              error.status = result && result.status;
+              reject(error);
+            } else {
+              resolve(result.data);
+            }
+          })
+          .withFailureHandler(() => {
+            const error = new Error("เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่");
+            error.code = "NETWORK";
+            reject(error);
+          })
+          .handleApi({
+            path,
+            method: (options.method || "GET").toUpperCase(),
+            body,
+          });
+      });
+    }
+
+    let response;
+    try {
+      response = await fetch(`${API_BASE}${path}`, {
+        cache: "no-store",
+        credentials: "same-origin",
+        ...options,
+        headers: {
+          Accept: "application/json",
+          ...(options.headers || {}),
+        },
+      });
+    } catch {
+      const error = new Error("เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่");
+      error.code = "NETWORK";
+      throw error;
+    }
+
+    let data = {};
+    try {
+      data = await response.json();
+    } catch {
+      // Keep the friendly fallback below.
+    }
+
+    if (!response.ok) {
+      const error = new Error(data.message || "ทำรายการไม่สำเร็จ");
+      error.code = data.error;
+      error.status = response.status;
+      throw error;
+    }
+
+    return data;
+  }
+
+  async function refreshAvailability({ initial = false } = {}) {
+    if (state.refreshing) return;
+    state.refreshing = true;
+
+    try {
+      const from = dateKey(state.today);
+      const to = dateKey(addDays(state.today, BOOKING_DAYS - 1));
+      const data = await api(
+        `/api/availability?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`
+      );
+
+      state.occupied = Array.isArray(data.bookings)
+        ? data.bookings.filter(
+            (booking) =>
+              booking &&
+              parseDateKey(booking.date) &&
+              Number.isInteger(booking.startMinutes)
+          )
+        : [];
+      state.status = "online";
+      state.publicQueue = data.queue || null;
+      syncServerTime(data.serverNow);
+
+      if (initial) {
+        els.date.value = findFirstAvailableDate();
+        els.formError.textContent = "";
+      } else if (state.selectedTime !== null) {
+        const selectedDate = parseDateKey(els.date.value);
+        if (
+          selectedDate &&
+          getSlotState(selectedDate, state.selectedTime) !== "free"
+        ) {
+          state.selectedTime = null;
+          els.timeError.textContent =
+            "ช่วงเวลาที่เลือกเพิ่งถูกจอง กรุณาเลือกเวลาใหม่";
+        }
+      }
+
+      renderSlots();
+      updateSummary();
+      renderSchedule();
+      renderPublicQueue();
+    } catch (error) {
+      state.status = "offline";
+      if (initial || error.code === "NETWORK") {
+        els.formError.textContent =
+          "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาตรวจสอบการเชื่อมต่อแล้วลองใหม่";
+      }
+      renderSlots();
+      updateSummary();
+      renderSchedule();
+      renderPublicQueue();
+    } finally {
+      state.refreshing = false;
+    }
+  }
+
+  function renderSlots() {
+    if (state.status !== "online") {
+      const message =
+        state.status === "loading"
+          ? "กำลังโหลดตารางคิว..."
+          : "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณารีเฟรชหน้า";
+      els.slotDateLabel.textContent = message;
+      els.slots.innerHTML = `<p class="slot-empty">${message}</p>`;
+      state.selectedTime = null;
+      updateSummary();
+      return;
+    }
+
+    const date = parseDateKey(els.date.value);
+    if (!date) {
+      els.slotDateLabel.textContent = "เลือกวันที่ก่อน";
+      els.slots.innerHTML = '<p class="slot-empty">เลือกวันที่ด้านบนเพื่อดูเวลาว่าง</p>';
+      state.selectedTime = null;
+      updateSummary();
+      return;
+    }
+
+    const openTime = getOpenTime(date);
+    const starts = getSlotStarts(date);
+    const available = starts.filter(
+      (startMinutes) => getSlotState(date, startMinutes) === "free"
+    );
+
+    els.slotDateLabel.textContent = `${formatDateFull(date)} · เปิด ${formatTime(
+      openTime
+    )}–21:00 น.`;
+
+    if (available.length === 0) {
+      els.slots.innerHTML =
+        '<p class="slot-empty">วันนี้ไม่มีรอบว่างแล้ว กรุณาเลือกวันอื่น</p>';
+      state.selectedTime = null;
+      updateSummary();
+      return;
+    }
+
+    if (!available.includes(state.selectedTime)) state.selectedTime = null;
+
+    els.slots.innerHTML = starts
+      .map((startMinutes) => {
+        const slotState = getSlotState(date, startMinutes);
+        const disabled = slotState !== "free";
+        const selected = state.selectedTime === startMinutes;
+        const status =
+          slotState === "booked"
+            ? "มีคิว"
+            : slotState === "past"
+              ? "เลยเวลา"
+              : selected
+                ? "เลือกแล้ว"
+                : "ว่าง";
+        const label = `${formatTime(startMinutes)} น. ${status}`;
+        return `
+          <button
+            type="button"
+            class="slot${slotState === "booked" ? " is-booked" : ""}${
+              slotState === "past" ? " is-past" : ""
+            }"
+            data-start="${startMinutes}"
+            aria-pressed="${selected}"
+            aria-label="${label}"
+            ${disabled ? "disabled" : ""}
+          >
+            <span class="slot-time">${formatTime(startMinutes)}</span>
+            <span class="slot-status">${status}</span>
+          </button>
+        `;
+      })
+      .join("");
+
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const date = parseDateKey(els.date.value);
+    els.totalPrice.textContent = `฿${PRICE}`;
+
+    if (!date) {
+      els.summaryText.textContent = "ยังไม่ได้เลือกวันและเวลา";
+      return;
+    }
+
+    if (state.selectedTime === null) {
+      els.summaryText.textContent = `${formatDateShort(date)} · ยังไม่ได้เลือกเวลา`;
+      return;
+    }
+
+    els.summaryText.textContent = `${formatDateShort(date)} · ${formatTime(
+      state.selectedTime
+    )}–${formatTime(state.selectedTime + SLOT_MINUTES)}`;
+  }
+
+  function updateSelectedSlot() {
+    els.slots.querySelectorAll(".slot[data-start]").forEach((button) => {
+      if (button.disabled) return;
+      const selected = Number(button.dataset.start) === state.selectedTime;
+      button.setAttribute("aria-pressed", String(selected));
+      const time = formatTime(Number(button.dataset.start));
+      button.setAttribute("aria-label", `${time} น. ${selected ? "เลือกแล้ว" : "ว่าง"}`);
+      const status = button.querySelector(".slot-status");
+      if (status) status.textContent = selected ? "เลือกแล้ว" : "ว่าง";
+    });
+  }
+
+  function renderSchedule() {
+    if (!state.today) return;
+
+    const scrollArea = document.querySelector(".timetable-scroll");
+    const scrollLeft = scrollArea ? scrollArea.scrollLeft : 0;
+    const scrollTop = scrollArea ? scrollArea.scrollTop : 0;
+    const start = addDays(state.today, state.scheduleOffset * 7);
+    const end = addDays(start, 6);
+
+    els.scheduleWeekRange.textContent = formatDateRange(start, end);
+    els.prevScheduleWeek.disabled = state.scheduleOffset <= 0;
+    els.nextScheduleWeek.disabled = state.scheduleOffset >= 1;
+
+    if (state.status !== "online") {
+      els.queueCount.textContent = state.status === "loading" ? "กำลังโหลด..." : "ออฟไลน์";
+      els.scheduleHead.innerHTML = "";
+      els.scheduleBody.innerHTML = `
+        <tr>
+          <td class="table-message" colspan="8">
+            ${
+              state.status === "loading"
+                ? "กำลังโหลดตารางคิว..."
+                : "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณารีเฟรชหน้า"
+            }
+          </td>
+        </tr>
+      `;
+      updateQueueNow([]);
+      return;
+    }
+
+    const days = Array.from({ length: 7 }, (_, index) => addDays(start, index));
+    const todayKey = dateKey(state.today);
+
+    els.scheduleHead.innerHTML = `
+      <tr>
+        <th class="time-column" scope="col">เวลา</th>
+        ${days
+          .map((date) => {
+            const isToday = dateKey(date) === todayKey;
+            return `
+              <th
+                scope="col"
+                class="${isToday ? "is-today" : ""}"
+                aria-label="${formatDateFull(date)}"
+              >
+                <span class="day-name">${WEEKDAYS[date.getDay()]}</span>
+                <span class="day-date">${date.getDate()} ${MONTHS[date.getMonth()]}</span>
+                ${isToday ? '<span class="today-label">วันนี้</span>' : ""}
+              </th>
+            `;
+          })
+          .join("")}
+      </tr>
+    `;
+
+    const times = [];
+    for (let minutes = WEEKEND_OPEN; minutes <= LAST_SLOT; minutes += SLOT_MINUTES) {
+      if (minutes !== SKIPPED_SLOT) times.push(minutes);
+    }
+
+    let freeCount = 0;
+    let bookedCount = 0;
+    const todayBookings = state.occupied.filter(
+      (booking) => booking.date === todayKey
+    );
+
+    els.scheduleBody.innerHTML = times
+      .map((startMinutes) => {
+        const cells = days
+          .map((date) => {
+            if (startMinutes < getOpenTime(date)) {
+              return '<td class="is-closed"><span class="cell is-closed">ปิด</span></td>';
+            }
+
+            const slotState = getSlotState(date, startMinutes);
+            if (slotState === "free") {
+              freeCount += 1;
+              return `
+                <td>
+                  <button
+                    type="button"
+                    class="cell is-free"
+                    data-date="${dateKey(date)}"
+                    data-start="${startMinutes}"
+                    aria-label="${formatDateFull(date)} ${formatTime(startMinutes)} น. ว่าง"
+                  >ว่าง</button>
+                </td>
+              `;
+            }
+
+            if (slotState === "booked") {
+              bookedCount += 1;
+              return '<td><span class="cell is-booked">มีคิว</span></td>';
+            }
+
+            return '<td><span class="cell is-past">เลย</span></td>';
+          })
+          .join("");
+
+        return `
+          <tr>
+            <th class="time-column" scope="row">${formatTime(startMinutes)}</th>
+            ${cells}
+          </tr>
+        `;
+      })
+      .join("");
+
+    els.queueCount.textContent =
+      bookedCount > 0
+        ? `ว่าง ${freeCount} · มีคิว ${bookedCount}`
+        : `ว่าง ${freeCount} ช่วง`;
+
+    updateQueueNow(todayBookings);
+
+    if (scrollArea) {
+      scrollArea.scrollLeft = scrollLeft;
+      scrollArea.scrollTop = scrollTop;
+    }
+  }
+
+  function updateQueueNow(todaysBookings) {
+    if (state.status !== "online") {
+      els.queueNowText.textContent =
+        state.status === "loading"
+          ? "กำลังเชื่อมต่อเซิร์ฟเวอร์..."
+          : "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้";
+      els.queueNowBox.classList.remove("is-busy");
+      els.queueNowBox.classList.add("is-closed");
+      return;
+    }
+
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    const openTime = getOpenTime(now);
+    let text = "";
+    let mode = "free";
+
+    if (nowMinutes < openTime) {
+      text = `ยังไม่เปิด · เปิด ${formatTime(openTime)} น.`;
+      mode = "closed";
+    } else if (nowMinutes >= 21 * 60) {
+      text = "ปิดทำการแล้ว";
+      mode = "closed";
+    } else {
+      const current = todaysBookings.find(
+        (booking) =>
+          booking.startMinutes <= nowMinutes &&
+          nowMinutes < booking.startMinutes + SLOT_MINUTES
+      );
+
+      if (current) {
+        text = `กำลังมีคิว · ${formatTime(current.startMinutes)}–${formatTime(
+          current.startMinutes + SLOT_MINUTES
+        )} น.`;
+        mode = "busy";
+      } else {
+        const next = todaysBookings
+          .filter((booking) => booking.startMinutes > nowMinutes)
+          .sort((a, b) => a.startMinutes - b.startMinutes)[0];
+
+        if (next) {
+          text = `ว่าง · คิวถัดไป ${formatTime(next.startMinutes)} น.`;
+        } else if (todaysBookings.length === 0) {
+          text = "ว่าง · ยังไม่มีคิววันนี้";
+        } else {
+          text = "ว่าง · ไม่มีคิวแล้ว";
+        }
+        mode = "free";
+      }
+    }
+
+    els.queueNowText.textContent = text;
+    els.queueNowBox.classList.remove("is-busy", "is-closed");
+    if (mode !== "free") els.queueNowBox.classList.add(`is-${mode}`);
+  }
+
+  function syncServerTime(serverNow) {
+    const parsed = Number(serverNow);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      state.serverOffsetMs = parsed - Date.now();
+    }
+  }
+
+  function tickClock() {
+    const now = new Date(Date.now() + state.serverOffsetMs);
+    els.shopClock.textContent = `${clockFormatter.format(now)} น.`;
+    els.shopClock.dateTime = now.toISOString();
+  }
+
+  function renderPublicQueue() {
+    if (state.status !== "online") {
+      els.liveQueueNumber.textContent = "—";
+      if (state.status === "loading") {
+        els.liveQueueTitle.textContent = "กำลังโหลดคิว...";
+        els.liveQueueMeta.textContent = "กรุณารอสักครู่";
+      } else {
+        els.liveQueueTitle.textContent = "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้";
+        els.liveQueueMeta.textContent = "กำลังลองเชื่อมต่อใหม่";
+      }
+      return;
+    }
+
+    const queue = state.publicQueue;
+    if (!queue) {
+      els.liveQueueNumber.textContent = "—";
+      els.liveQueueTitle.textContent = "ยังไม่มีข้อมูลคิว";
+      els.liveQueueMeta.textContent = "จองคิวด้านล่างได้เลย";
+      return;
+    }
+
+    els.liveQueueNumber.textContent =
+      queue.currentNo === null ? "—" : String(queue.currentNo);
+
+    if (queue.currentNo !== null) {
+      els.liveQueueTitle.textContent = `คิวที่ ${queue.currentNo} กำลังเรียก`;
+      els.liveQueueMeta.textContent =
+        queue.currentStartMinutes != null
+          ? `เวลา ${formatTime(queue.currentStartMinutes)}–${formatTime(
+              queue.currentStartMinutes + SLOT_MINUTES
+            )} น. · ${
+              queue.waitingCount > 0
+                ? `รออีก ${queue.waitingCount} คิว`
+                : "คิวสุดท้ายแล้ว"
+            }`
+          : queue.waitingCount > 0
+            ? `รออีก ${queue.waitingCount} คิว`
+            : "คิวสุดท้ายแล้ว";
+    } else if (queue.total === 0) {
+      els.liveQueueTitle.textContent = "วันนี้ยังไม่มีคิว";
+      els.liveQueueMeta.textContent = "จองคิวด้านล่างได้เลย";
+    } else if (queue.waitingCount === 0) {
+      els.liveQueueTitle.textContent = "เรียกคิวครบแล้ว";
+      els.liveQueueMeta.textContent = `วันนี้ทั้งหมด ${queue.total} คิว`;
+    } else {
+      els.liveQueueTitle.textContent = "ยังไม่เริ่มเรียกคิว";
+      els.liveQueueMeta.textContent = `รอคิว ${queue.waitingCount} คิว · ทั้งหมด ${queue.total} คิว`;
+    }
+  }
+
+  function connectRealtime() {
+    if (isAppsScript || API_BASE || !("EventSource" in window)) return;
+    const source = new EventSource("/api/events");
+    source.addEventListener("update", (event) => {
+      let data;
+      try {
+        data = JSON.parse(event.data);
+      } catch {
+        return;
+      }
+      syncServerTime(data.serverNow || data.at);
+      if (data.queue) {
+        state.publicQueue = data.queue;
+        renderPublicQueue();
+      }
+      if (data.availabilityChanged) refreshAvailability();
+      refreshMyBookingStatus();
+    });
+    state.eventSource = source;
+  }
+
+  function saveTrackedBooking(booking) {
+    try {
+      localStorage.setItem(
+        BOOKING_STORAGE_KEY,
+        JSON.stringify({
+          code: booking.code,
+          date: booking.date,
+          savedAt: Date.now(),
+        })
+      );
+      localStorage.removeItem(NOTIFIED_STORAGE_KEY);
+    } catch {
+      // Local tracking is optional; the booking is already saved server-side.
+    }
+  }
+
+  function getTrackedBooking() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(BOOKING_STORAGE_KEY) || "null");
+      if (parsed && typeof parsed.code === "string") return parsed;
+    } catch {
+      // Ignore invalid local data.
+    }
+    return null;
+  }
+
+  function renderMyQueue() {
+    const booking = state.myBooking;
+    if (!booking) {
+      els.myQueueCard.hidden = true;
+      els.myQueueCard.classList.remove("is-called");
+      return;
+    }
+
+    const called = booking.status === "called";
+    const done = booking.status === "done";
+    const start = Number(booking.startMinutes);
+    const timeRange =
+      Number.isFinite(start)
+        ? `${formatTime(start)}–${formatTime(start + SLOT_MINUTES)} น.`
+        : "";
+
+    els.myQueueCard.hidden = false;
+    els.myQueueCard.classList.toggle("is-called", called);
+    els.myQueueNumber.textContent = booking.queueNo
+      ? String(booking.queueNo)
+      : "—";
+
+    if (called) {
+      els.myQueueTitle.textContent = "ถึงคิวของคุณแล้ว!";
+      els.myQueueDetail.textContent = `คิวที่ ${booking.queueNo} · ${timeRange} · กรุณาเข้าร้าน`;
+    } else if (done) {
+      els.myQueueTitle.textContent = "คิวนี้เสร็จแล้ว";
+      els.myQueueDetail.textContent = `คิวที่ ${booking.queueNo} · ${timeRange}`;
+    } else {
+      const date = parseDateKey(booking.date);
+      els.myQueueTitle.textContent = `คิวของคุณ #${booking.queueNo} กำลังรอ`;
+      els.myQueueDetail.textContent = `${
+        date ? formatDateShort(date) : booking.date
+      } · ${timeRange}`;
+    }
+
+    updateNotificationButtons();
+  }
+
+  function updateNotificationButtons() {
+    const supported = "Notification" in window;
+    const permission = supported ? Notification.permission : "unsupported";
+    const done = state.myBooking && state.myBooking.status === "done";
+    const buttons = [els.enableNotifyButton, els.enableNotifySuccess];
+
+    buttons.forEach((button) => {
+      if (!button) return;
+      button.hidden = !supported || done;
+      if (!supported) return;
+
+      if (permission === "granted") {
+        button.disabled = true;
+        button.textContent = "เปิดแจ้งเตือนแล้ว";
+      } else if (permission === "denied") {
+        button.disabled = true;
+        button.textContent = "เบราว์เซอร์ปิดแจ้งเตือน";
+      } else {
+        button.disabled = false;
+        button.textContent = "เปิดแจ้งเตือน";
+      }
+    });
+
+    if (els.enableNotifyButton && !state.myBooking) {
+      els.enableNotifyButton.hidden = true;
+    }
+  }
+
+  async function requestNotificationPermission() {
+    if (!("Notification" in window)) return;
+
+    try {
+      if (Notification.permission === "default") {
+        await Notification.requestPermission();
+      }
+      try {
+        const AudioContextClass =
+          window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass && !state.audioContext) {
+          state.audioContext = new AudioContextClass();
+        }
+        if (state.audioContext?.state === "suspended") {
+          await state.audioContext.resume();
+        }
+      } catch {
+        // Notification permission still applies if audio is unavailable.
+      }
+      updateNotificationButtons();
+    } catch {
+      updateNotificationButtons();
+    }
+  }
+
+  function playAlertSound() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    try {
+      if (!state.audioContext) state.audioContext = new AudioContextClass();
+      const context = state.audioContext;
+      if (context.state === "suspended") context.resume();
+
+      const now = context.currentTime;
+      [880, 1175].forEach((frequency, index) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const offset = index * 0.18;
+        oscillator.type = "sine";
+        oscillator.frequency.value = frequency;
+        gain.gain.setValueAtTime(0.0001, now + offset);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + offset + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.17);
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(now + offset);
+        oscillator.stop(now + offset + 0.18);
+      });
+    } catch {
+      // Sound is a progressive enhancement.
+    }
+  }
+
+  function notifyQueueCalled(booking) {
+    if (!booking || booking.status !== "called") return;
+
+    let alreadyNotified = null;
+    try {
+      alreadyNotified = localStorage.getItem(NOTIFIED_STORAGE_KEY);
+    } catch {
+      // Continue without local notification state.
+    }
+    if (alreadyNotified === booking.code) return;
+
+    try {
+      localStorage.setItem(NOTIFIED_STORAGE_KEY, booking.code);
+    } catch {
+      // Continue with in-page and browser notifications.
+    }
+
+    const range = `${formatTime(booking.startMinutes)}–${formatTime(
+      booking.startMinutes + SLOT_MINUTES
+    )} น.`;
+    els.queueAlertText.textContent = `คิวที่ ${booking.queueNo} · ${range} · กรุณาเข้าร้านได้เลย`;
+    els.queueAlert.hidden = false;
+    playAlertSound();
+
+    if ("Notification" in window && Notification.permission === "granted") {
+      try {
+        new Notification("ถึงคิวของคุณแล้ว!", {
+          body: `คิวที่ ${booking.queueNo} · ${range}`,
+          tag: `queue-${booking.code}`,
+        });
+      } catch {
+        // The on-page alert still displays.
+      }
+    }
+  }
+
+  async function refreshMyBookingStatus() {
+    if (state.checkingBooking) return;
+    const tracked = getTrackedBooking();
+    if (!tracked || !tracked.code) {
+      state.myBooking = null;
+      renderMyQueue();
+      return;
+    }
+
+    state.checkingBooking = true;
+    try {
+      const data = await api(
+        `/api/booking-status?code=${encodeURIComponent(tracked.code)}`
+      );
+      state.myBooking = data;
+      renderMyQueue();
+      if (data.status === "called") notifyQueueCalled(data);
+    } catch (error) {
+      if (error.status === 404) {
+        try {
+          localStorage.removeItem(BOOKING_STORAGE_KEY);
+        } catch {
+          // Ignore local storage errors.
+        }
+        state.myBooking = null;
+        renderMyQueue();
+      }
+    } finally {
+      state.checkingBooking = false;
+    }
+  }
+
+  function setError(input, errorElement, message) {
+    if (input) {
+      input.closest(".field")?.classList.toggle("has-error", Boolean(message));
+      input.setAttribute("aria-invalid", String(Boolean(message)));
+    }
+    if (errorElement) errorElement.textContent = message;
+  }
+
+  function clearErrors() {
+    setError(els.name, els.nameError, "");
+    setError(els.classNameInput, els.classError, "");
+    setError(els.phone, els.phoneError, "");
+    els.timeError.textContent = "";
+    els.formError.textContent = "";
+  }
+
+  function validateForm() {
+    clearErrors();
+    let firstInvalid = null;
+    const date = parseDateKey(els.date.value);
+    const maxDate = addDays(state.today, BOOKING_DAYS - 1);
+
+    if (!date) {
+      els.formError.textContent = "กรุณาเลือกวันที่";
+      firstInvalid = els.date;
+    } else if (date < state.today || date > maxDate) {
+      els.formError.textContent = "กรุณาเลือกวันภายใน 14 วันข้างหน้า";
+      firstInvalid = els.date;
+    }
+
+    if (state.selectedTime === null) {
+      els.timeError.textContent = "กรุณาเลือกเวลา";
+      if (!firstInvalid) {
+        firstInvalid = els.slots.querySelector(".slot:not(:disabled)") || els.date;
+      }
+    }
+
+    const nickname = els.name.value.trim().replace(/\s+/g, " ");
+    if (!nickname) {
+      setError(els.name, els.nameError, "กรุณากรอกชื่อเล่น");
+      if (!firstInvalid) firstInvalid = els.name;
+    }
+
+    const className = els.classNameInput.value.trim();
+    if (!className) {
+      setError(els.classNameInput, els.classError, "กรุณากรอกชั้น");
+      if (!firstInvalid) firstInvalid = els.classNameInput;
+    }
+
+    const phone = els.phone.value.replace(/\D/g, "");
+    if (!phone) {
+      setError(els.phone, els.phoneError, "กรุณากรอกเบอร์โทรศัพท์");
+      if (!firstInvalid) firstInvalid = els.phone;
+    } else if (!/^0\d{8,9}$/.test(phone)) {
+      setError(
+        els.phone,
+        els.phoneError,
+        "กรุณากรอกเบอร์โทรให้ถูกต้อง เช่น 0812345678"
+      );
+      if (!firstInvalid) firstInvalid = els.phone;
+    }
+
+    if (!firstInvalid && date) {
+      if (getSlotState(date, state.selectedTime) !== "free") {
+        els.timeError.textContent = "เวลานี้ถูกจองแล้ว กรุณาเลือกเวลาอื่น";
+        renderSlots();
+        firstInvalid = els.slots.querySelector(".slot:not(:disabled)") || els.date;
+      }
+    }
+
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return null;
+    }
+
+    return { nickname, className, phone };
+  }
+
+  function setSubmitting(value) {
+    state.submitting = value;
+    els.submitBtn.disabled = value;
+    els.submitBtn.textContent = value ? "กำลังบันทึก..." : "ยืนยันการจอง";
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (state.submitting) return;
+
+    if (state.status !== "online") {
+      els.formError.textContent = "กรุณารอให้ระบบเชื่อมต่อก่อน แล้วลองอีกครั้ง";
+      return;
+    }
+
+    const result = validateForm();
+    if (!result) return;
+
+    setSubmitting(true);
+    try {
+      const data = await api("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: els.date.value,
+          startMinutes: state.selectedTime,
+          nickname: result.nickname,
+          className: result.className,
+          phone: result.phone,
+        }),
+      });
+
+      const booking = data.booking;
+      state.occupied.push({
+        date: booking.date,
+        startMinutes: booking.startMinutes,
+      });
+      renderSlots();
+      updateSummary();
+      renderSchedule();
+      saveTrackedBooking(booking);
+      showSuccess(booking);
+      refreshMyBookingStatus();
+      updateNotificationButtons();
+    } catch (error) {
+      if (error.code === "SLOT_TAKEN" || error.code === "PAST_SLOT") {
+        state.selectedTime = null;
+        els.timeError.textContent = error.message;
+        await refreshAvailability();
+      } else if (error.code === "NETWORK") {
+        state.status = "offline";
+        els.formError.textContent = error.message;
+        renderSlots();
+        updateSummary();
+        renderSchedule();
+      } else {
+        els.formError.textContent =
+          error.message || "บันทึกการจองไม่สำเร็จ กรุณาลองใหม่";
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  function showSuccess(booking) {
+    const date = parseDateKey(booking.date);
+
+    els.successCode.textContent = booking.code;
+    els.successDate.textContent = formatDateFull(date);
+    els.successTime.textContent = `${formatTime(booking.startMinutes)}–${formatTime(
+      booking.startMinutes + SLOT_MINUTES
+    )} น.`;
+    els.successName.textContent = booking.nickname;
+    els.successClass.textContent = booking.className || "—";
+    els.successPrice.textContent = `฿${Number(booking.price) || PRICE}`;
+
+    els.form.hidden = true;
+    els.successPanel.hidden = false;
+    els.successPanel.focus({ preventScroll: true });
+    els.booking.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function resetBooking() {
+    els.form.reset();
+    state.selectedTime = null;
+    clearErrors();
+    els.date.value = findFirstAvailableDate();
+    els.form.hidden = false;
+    els.successPanel.hidden = true;
+    renderSlots();
+    updateSummary();
+    els.date.focus();
+    els.booking.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function bindEvents() {
+    els.date.addEventListener("change", () => {
+      state.selectedTime = null;
+      clearErrors();
+      renderSlots();
+    });
+
+    els.slots.addEventListener("click", (event) => {
+      const button = event.target.closest(".slot[data-start]");
+      if (!button || button.disabled) return;
+      state.selectedTime = Number(button.dataset.start);
+      els.timeError.textContent = "";
+      els.formError.textContent = "";
+      updateSelectedSlot();
+      updateSummary();
+    });
+
+    els.scheduleBody.addEventListener("click", (event) => {
+      if (state.status !== "online") return;
+      const button = event.target.closest(".cell.is-free[data-date][data-start]");
+      if (!button) return;
+
+      els.date.value = button.dataset.date;
+      state.selectedTime = Number(button.dataset.start);
+      clearErrors();
+      renderSlots();
+      updateSummary();
+      els.booking.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    els.prevScheduleWeek.addEventListener("click", () => {
+      if (state.scheduleOffset <= 0) return;
+      state.scheduleOffset -= 1;
+      renderSchedule();
+      document.querySelector(".timetable-scroll").scrollTo({ left: 0, top: 0 });
+    });
+
+    els.nextScheduleWeek.addEventListener("click", () => {
+      if (state.scheduleOffset >= 1) return;
+      state.scheduleOffset += 1;
+      renderSchedule();
+      document.querySelector(".timetable-scroll").scrollTo({ left: 0, top: 0 });
+    });
+
+    els.name.addEventListener("input", () => {
+      if (els.nameError.textContent) setError(els.name, els.nameError, "");
+    });
+
+    els.classNameInput.addEventListener("input", () => {
+      if (els.classError.textContent) {
+        setError(els.classNameInput, els.classError, "");
+      }
+    });
+
+    els.phone.addEventListener("input", () => {
+      if (els.phoneError.textContent) setError(els.phone, els.phoneError, "");
+    });
+
+    els.form.addEventListener("submit", handleSubmit);
+    els.bookAgain.addEventListener("click", resetBooking);
+    els.enableNotifyButton.addEventListener("click", requestNotificationPermission);
+    els.enableNotifySuccess.addEventListener("click", requestNotificationPermission);
+    els.closeQueueAlert.addEventListener("click", () => {
+      els.queueAlert.hidden = true;
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") refreshAvailability();
+    });
+  }
+
+  async function init() {
+    state.today = startOfDay(new Date());
+    els.date.min = dateKey(state.today);
+    els.date.max = dateKey(addDays(state.today, BOOKING_DAYS - 1));
+    els.date.value = dateKey(state.today);
+
+    bindEvents();
+    renderSlots();
+    updateSummary();
+    renderSchedule();
+    renderPublicQueue();
+    tickClock();
+
+    await refreshAvailability({ initial: true });
+    refreshMyBookingStatus();
+    updateNotificationButtons();
+    connectRealtime();
+    window.setInterval(tickClock, 1000);
+    window.setInterval(() => {
+      if (document.visibilityState === "visible") {
+        refreshAvailability();
+        refreshMyBookingStatus();
+      }
+    }, API_BASE || isAppsScript ? 5000 : 30000);
+  }
+
+  init();
+})();
+
+  </script>
+</body>
+</html>

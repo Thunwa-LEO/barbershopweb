@@ -160,6 +160,7 @@ function applyApiCors(req, res) {
   res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+  res.setHeader("Access-Control-Allow-Private-Network", "true");
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
 }
 

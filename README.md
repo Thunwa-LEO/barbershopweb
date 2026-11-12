@@ -1,9 +1,19 @@
 # เสี่ยแภคบาร์เบอร์ — barbershopweb
 
-เว็บจองคิวตัดผมและหลังบ้านสำหรับดู/เรียกคิวของร้าน **เสี่ยแภคบาร์เบอร์**
-แยกเป็น **2 ไฟล์ HTML แบบ self-contained** คือหน้าลูกค้าและหลังบ้าน
-โดย CSS และ JavaScript ถูกฝังอยู่ในไฟล์ของแต่ละหน้า และใช้ API/SSE ร่วมกันเพื่อให้สองหน้าซิงก์กัน
-ใช้ HTML, CSS, JavaScript และ Node.js ล้วน ไม่ต้องติดตั้ง dependency เพิ่ม
+## เวอร์ชัน Google (ใช้งานหลัก)
+
+เวอร์ชันนี้รันบน **Google Apps Script + Google Sheets** ไม่ต้องเปิดเครื่องนี้ทิ้งไว้:
+
+- หน้าลูกค้า: https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=home
+- หลังบ้าน: https://script.google.com/macros/s/AKfycbzmeR0Ue6SvIc1twZmWIsdTHUE_fTe42yrYNYCTR5Jy_bePwCx9R89VuWGhI03TiGXe/exec?page=admin
+- Google Sheets: https://docs.google.com/spreadsheets/d/1wRftatxh8HMBnOZkXAWq9UkoJt-oFofaj7O-e5QzU5A/edit
+
+ข้อมูลคิวทั้งหมดถูกย้ายไป Google Sheets แล้ว และทั้งสองหน้าซิงก์กันทุก 5 วินาที
+ดูวิธีฝังใน Google Sites ที่ [`google-apps-script/README.md`](google-apps-script/README.md)
+
+> Google Sites ไม่มี API สำหรับสร้างหน้าหรือวาง embed อัตโนมัติ จึงต้องสร้างหน้า Sites และวาง iframe ตามคู่มือ
+
+## เวอร์ชัน Node.js (สำรองในเครื่อง)
 
 ## เริ่มใช้งาน
 
